@@ -27,14 +27,6 @@ namespace QLDSV_HTC
 
         }
 
-        private void lOPBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsLop.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DS);
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
@@ -55,6 +47,7 @@ namespace QLDSV_HTC
             if (Program.myReader == null) return;
             Program.myReader.Read();
             maKhoa = Program.myReader.GetString(0);
+            Program.myReader.Close();
 
 
             if (Program.mGroup == "PGV")
@@ -217,7 +210,7 @@ namespace QLDSV_HTC
 
             if(Program.KetNoi() == 0)
             {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi kết nối về Khoa mới", "", MessageBoxButtons.OK);
                 cmbKhoa.SelectedIndex = Program.mChinhanh;
             }
             else

@@ -50,5 +50,17 @@ namespace QLDSV_HTC
                 f.Show();
             }
         }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmSinhVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmSinhVien f = new frmSinhVien();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

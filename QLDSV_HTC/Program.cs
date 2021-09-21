@@ -72,6 +72,7 @@ namespace QLDSV_HTC
 
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
+            
 
             if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             try
