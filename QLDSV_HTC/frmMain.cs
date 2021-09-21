@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace QLDSV_HTC
@@ -36,7 +37,7 @@ namespace QLDSV_HTC
             MA.Text = "Mã = " + Program.username;
             HOTEN.Text = "Họ tên = " + Program.mHoten;
             NHOM.Text = "Nhóm = " + Program.mGroup;
-
+            if (Program.mGroup == "PGV" || Program.mGroup == "KHOA") pageDanhMuc.Visible = true;
         }
 
         private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -61,6 +62,24 @@ namespace QLDSV_HTC
                 f.MdiParent = this;
                 f.Show();
             }
+        }
+
+        private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Program.mChinhanh = 0;
+            Program.servername = "";
+            Program.username = "";
+            Program.mlogin = "";
+            Program.password = "";
+            Program.mloginDN = "";
+            Program.passwordDN = "";
+            Program.mGroup = "";
+            Program.mHoten = "";
+            pageDanhMuc.Visible = false;
+
+            MA.Text = "";
+            HOTEN.Text = "";
+            NHOM.Text = "";
         }
     }
 }

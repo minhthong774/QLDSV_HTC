@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QLDSV_HTC
@@ -8,9 +13,18 @@ namespace QLDSV_HTC
     public partial class frmSinhVien : Form
     {
         int vitri = 0;
+        int vitriLop = 0;
         public frmSinhVien()
         {
             InitializeComponent();
+        }
+
+        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.bdsLop.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.DS);
+
         }
 
         private void frmSinhVien_Load(object sender, EventArgs e)
@@ -32,7 +46,7 @@ namespace QLDSV_HTC
 
             if (Program.mGroup == "PGV")
             {
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnPrint.Enabled = false;
 
                 cmbKhoa.Enabled = true;
             }
@@ -42,34 +56,28 @@ namespace QLDSV_HTC
             }
 
             if (bdsLop.Count == 0) btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnPrint.Enabled = false;
-
-        }
-
-        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsLop.EndEdit();
-            this.bdsSinhVien.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DS);
-
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitri = bdsSinhVien.Position;
+            vitriLop = bdsLop.Position;
             panelControl3.Enabled = true;
-            bdsLop.AddNew();
-            string malop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
-            txtMaLop.Text = malop;
+            bdsSinhVien.AddNew();
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
             gcSinhVien.Enabled = false;
             gcLop.Enabled = false;
+            string maLop = ((DataRowView)bdsLop[vitriLop])["MALOP"].ToString();
+            txtMaLop.Text = maLop;
+            ckePhai.Checked = false;
+            ckeDaNghiHoc.Checked = false;
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitri = bdsSinhVien.Position;
+            vitriLop = bdsLop.Position;
             panelControl3.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -85,7 +93,7 @@ namespace QLDSV_HTC
                 txtMaSV.Focus();
                 return;
             }
-            if(txtHo.Text.Trim() == "")
+            if (txtHo.Text.Trim() == "")
             {
                 MessageBox.Show("Ho Sinh Vien Khong Duoc Thieu!", "", MessageBoxButtons.OK);
                 txtHo.Focus();
@@ -97,13 +105,7 @@ namespace QLDSV_HTC
                 txtTen.Focus();
                 return;
             }
-            if (txtPassword.Text.Trim() == "")
-            {
-                MessageBox.Show("Password Khong Duoc Thieu!", "", MessageBoxButtons.OK);
-                txtPassword.Focus();
-                return;
-            }
-            if(txtDiaChi.Text.Trim() == "")
+            if (txtDiaChi.Text.Trim() == "")
             {
                 MessageBox.Show("Dia Chi Khong Duoc Thieu!", "", MessageBoxButtons.OK);
                 txtDiaChi.Focus();
@@ -112,79 +114,132 @@ namespace QLDSV_HTC
 
             try
             {
-                bdsLop.EndEdit();
-                bdsLop.ResetCurrentItem();
-                this.LOPTableAdapter.Update(this.DS.LOP);
+                bdsSinhVien.EndEdit();
+                bdsSinhVien.ResetCurrentItem();
+                this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
             }
             catch (Exception ex)
             {
-                this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
-                MessageBox.Show("Loi Ghi Giang Vien!\n" + ex.Message, "", MessageBoxButtons.OK);
+                this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                MessageBox.Show("Loi Ghi Sinh Vien!\n" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
             gcLop.Enabled = true;
+            gcSinhVien.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
 
-            panelControl2.Enabled = false;
+            panelControl3.Enabled = false;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //String maLop = "";
-            //if (bdsSV.Count > 0)
-            //{
-            //    MessageBox.Show("Không thể xóa lớp này vì lớp đã có sinh viên", "", MessageBoxButtons.OK);
-            //    return;
-            //}
+            String maSinhVien = "";
+            if (bdsHocPhi.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa sinh viên này!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (bdsDangKy.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa sinh viên này!", "", MessageBoxButtons.OK);
+                return;
+            }
 
-            //if (MessageBox.Show("Bạn có thật sự muốn xóa lớp này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //{
-            //    try
-            //    {
-            //        maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
-            //        bdsLop.RemoveCurrent();
-            //        this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
-            //        this.LOPTableAdapter.Update(this.DS.LOP);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
-            //        this.LOPTableAdapter.Fill(this.DS.LOP);
-            //        bdsLop.Position = bdsLop.Find("MALOP", maLop);
-            //        return;
-            //    }
-            //}
+            if (MessageBox.Show("Bạn có thật sự muốn xóa sinh viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    maSinhVien = ((DataRowView)bdsSinhVien[bdsSinhVien.Position])["MASV"].ToString();
+                    bdsSinhVien.RemoveCurrent();
+                    this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa sinh viên. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    this.LOPTableAdapter.Fill(this.DS.LOP);
+                    bdsSinhVien.Position = bdsSinhVien.Find("MASV", maSinhVien);
+                    return;
+                }
+            }
 
-            //if (bdsLop.Count == 0) btnXoa.Enabled = false;
+            if (bdsSinhVien.Count == 0) btnXoa.Enabled = false;
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //bdsLop.CancelEdit();
-            //if (btnThem.Enabled == false) bdsLop.Position = vitri;
-            //gcLop.Enabled = true;
-            //panelControl2.Enabled = false;
-            //btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
-            //btnGhi.Enabled = btnUndo.Enabled = false;
+            bdsSinhVien.CancelEdit();
+            if (btnThem.Enabled == false) bdsSinhVien.Position = vitri;
+            gcLop.Enabled = true;
+            gcSinhVien.Enabled = true;
+            panelControl3.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
+            btnGhi.Enabled = btnUndo.Enabled = false;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //try
-            //{
-            //    this.LOPTableAdapter.Fill(this.DS.LOP);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi Reload: " + ex.Message, "", MessageBoxButtons.OK);
-            //    return;
-            //}
+            try
+            {
+                this.LOPTableAdapter.Fill(this.DS.LOP);
+                this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi Reload: " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void btnPrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
+        }
+
+        private void ckePhai_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbKhoa.SelectedValue.ToString() == "System.Data.DataRowView")
+                return;
+            Program.servername = cmbKhoa.SelectedValue.ToString();
+
+            if (cmbKhoa.SelectedIndex != Program.mChinhanh)
+            {
+                Program.mlogin = Program.remotelogin;
+                Program.password = Program.remotepassword;
+            }
+            else
+            {
+                Program.mlogin = Program.mloginDN;
+                Program.password = Program.passwordDN;
+            }
+
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Lỗi kết nối về Khoa mới", "", MessageBoxButtons.OK);
+                cmbKhoa.SelectedIndex = Program.mChinhanh;
+            }
+            else
+            {
+                this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.LOPTableAdapter.Fill(this.DS.LOP);
+                this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+                this.DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.DANGKYTableAdapter.Fill(this.DS.DANGKY);
+                this.HOCPHITableAdapter.Connection.ConnectionString = Program.connstr;
+                this.HOCPHITableAdapter.Fill(this.DS.HOCPHI);
+            }
         }
     }
 }
