@@ -45,7 +45,7 @@ namespace QLDSV_HTC
             this.txtLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(261, 25);
-            this.txtLogin.TabIndex = 0;
+            this.txtLogin.TabIndex = 1;
             this.txtLogin.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtPass
@@ -55,7 +55,7 @@ namespace QLDSV_HTC
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(261, 25);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 2;
             // 
             // cmbChinhanh
             // 
@@ -64,7 +64,7 @@ namespace QLDSV_HTC
             this.cmbChinhanh.Margin = new System.Windows.Forms.Padding(4);
             this.cmbChinhanh.Name = "cmbChinhanh";
             this.cmbChinhanh.Size = new System.Drawing.Size(261, 25);
-            this.cmbChinhanh.TabIndex = 3;
+            this.cmbChinhanh.TabIndex = 0;
             this.cmbChinhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChinhanh_SelectedIndexChanged);
             // 
             // label1
@@ -103,7 +103,7 @@ namespace QLDSV_HTC
             this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(112, 42);
-            this.btnDangNhap.TabIndex = 7;
+            this.btnDangNhap.TabIndex = 3;
             this.btnDangNhap.Text = "Đăng Nhập";
             this.btnDangNhap.UseVisualStyleBackColor = true;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
@@ -114,7 +114,7 @@ namespace QLDSV_HTC
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(117, 42);
-            this.btnThoat.TabIndex = 8;
+            this.btnThoat.TabIndex = 4;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);

@@ -76,6 +76,8 @@ namespace QLDSV_HTC
             Program.frmChinh.HOTEN.Text = "Họ tên = " + Program.mHoten;
             Program.frmChinh.NHOM.Text = "Nhóm = " + Program.mGroup;
             Program.frmChinh.HienThiMenu();
+            this.Close();
+            MessageBox.Show("Dang Nhap Thanh Cong", "", MessageBoxButtons.OK);
 
         }
 

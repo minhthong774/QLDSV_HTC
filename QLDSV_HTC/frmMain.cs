@@ -39,5 +39,16 @@ namespace QLDSV_HTC
 
         }
 
+        private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmLop));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmLop f = new frmLop();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }
