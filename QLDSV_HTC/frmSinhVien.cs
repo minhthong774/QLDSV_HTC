@@ -46,7 +46,7 @@ namespace QLDSV_HTC
 
             if (Program.mGroup == "PGV")
             {
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnPrint.Enabled = false;
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
 
                 cmbKhoa.Enabled = true;
             }
@@ -55,7 +55,7 @@ namespace QLDSV_HTC
                 cmbKhoa.Enabled = false;
             }
 
-            if (bdsLop.Count == 0) btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = btnPrint.Enabled = false;
+            if (bdsLop.Count == 0) btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -158,7 +158,7 @@ namespace QLDSV_HTC
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa sinh viên. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
-                    this.LOPTableAdapter.Fill(this.DS.LOP);
+                    this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
                     bdsSinhVien.Position = bdsSinhVien.Find("MASV", maSinhVien);
                     return;
                 }
@@ -209,6 +209,7 @@ namespace QLDSV_HTC
 
         private void cmbKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbKhoa.DataSource == null) return;
             if (cmbKhoa.SelectedValue.ToString() == "System.Data.DataRowView")
                 return;
             Program.servername = cmbKhoa.SelectedValue.ToString();
@@ -240,6 +241,11 @@ namespace QLDSV_HTC
                 this.HOCPHITableAdapter.Connection.ConnectionString = Program.connstr;
                 this.HOCPHITableAdapter.Fill(this.DS.HOCPHI);
             }
+        }
+
+        private void frmSinhVien_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.cmbKhoa.DataSource = null;
         }
     }
 }

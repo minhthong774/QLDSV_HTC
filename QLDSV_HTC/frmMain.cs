@@ -80,6 +80,36 @@ namespace QLDSV_HTC
             MA.Text = "";
             HOTEN.Text = "";
             NHOM.Text = "";
+
+            foreach (Form f in this.MdiChildren)
+                f.Close();
+
+            this.btnDangNhap.Enabled = true;
+            this.btnTaoTaiKhoan.Enabled = this.btnDangXuat.Enabled = false;
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmLopTinChi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmLopTinChi f = new frmLopTinChi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmMonHoc));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmMonHoc f = new frmMonHoc();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
     }
 }

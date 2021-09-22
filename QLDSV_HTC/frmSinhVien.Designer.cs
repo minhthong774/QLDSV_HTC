@@ -37,9 +37,9 @@ namespace QLDSV_HTC
             System.Windows.Forms.Label nGAYSINHLabel;
             System.Windows.Forms.Label mALOPLabel;
             System.Windows.Forms.Label dIACHILabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             System.Windows.Forms.Label pHAILabel;
             System.Windows.Forms.Label dANGHIHOCLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -93,8 +93,8 @@ namespace QLDSV_HTC
             this.bdsHocPhi = new System.Windows.Forms.BindingSource(this.components);
             this.bdsDangKy = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.ckePhai = new DevExpress.XtraEditors.CheckEdit();
             this.ckeDaNghiHoc = new DevExpress.XtraEditors.CheckEdit();
+            this.ckePhai = new DevExpress.XtraEditors.CheckEdit();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -122,8 +122,8 @@ namespace QLDSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.bdsDangKy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ckePhai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckeDaNghiHoc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckePhai.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mASVLabel
@@ -188,6 +188,24 @@ namespace QLDSV_HTC
             dIACHILabel.Size = new System.Drawing.Size(47, 13);
             dIACHILabel.TabIndex = 22;
             dIACHILabel.Text = "DIACHI:";
+            // 
+            // pHAILabel
+            // 
+            pHAILabel.AutoSize = true;
+            pHAILabel.Location = new System.Drawing.Point(697, 12);
+            pHAILabel.Name = "pHAILabel";
+            pHAILabel.Size = new System.Drawing.Size(35, 13);
+            pHAILabel.TabIndex = 22;
+            pHAILabel.Text = "PHAI:";
+            // 
+            // dANGHIHOCLabel
+            // 
+            dANGHIHOCLabel.AutoSize = true;
+            dANGHIHOCLabel.Location = new System.Drawing.Point(660, 45);
+            dANGHIHOCLabel.Name = "dANGHIHOCLabel";
+            dANGHIHOCLabel.Size = new System.Drawing.Size(72, 13);
+            dANGHIHOCLabel.TabIndex = 23;
+            dANGHIHOCLabel.Text = "DANGHIHOC:";
             // 
             // barManager1
             // 
@@ -444,6 +462,7 @@ namespace QLDSV_HTC
             this.tableAdapterManager.HOCPHITableAdapter = this.HOCPHITableAdapter;
             this.tableAdapterManager.LOPTableAdapter = this.LOPTableAdapter;
             this.tableAdapterManager.LOPTINCHITableAdapter = null;
+            this.tableAdapterManager.MONHOCTableAdapter = null;
             this.tableAdapterManager.SINHVIENTableAdapter = this.SINHVIENTableAdapter;
             this.tableAdapterManager.UpdateOrder = QLDSV_HTC.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -568,6 +587,7 @@ namespace QLDSV_HTC
             // 
             this.txtMaSV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "MASV", true));
             this.txtMaSV.Location = new System.Drawing.Point(127, 6);
+            this.txtMaSV.MaxLength = 10;
             this.txtMaSV.Name = "txtMaSV";
             this.txtMaSV.Size = new System.Drawing.Size(128, 21);
             this.txtMaSV.TabIndex = 1;
@@ -576,6 +596,7 @@ namespace QLDSV_HTC
             // 
             this.txtHo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "HO", true));
             this.txtHo.Location = new System.Drawing.Point(348, 6);
+            this.txtHo.MaxLength = 50;
             this.txtHo.Name = "txtHo";
             this.txtHo.Size = new System.Drawing.Size(100, 21);
             this.txtHo.TabIndex = 2;
@@ -584,6 +605,7 @@ namespace QLDSV_HTC
             // 
             this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "TEN", true));
             this.txtTen.Location = new System.Drawing.Point(533, 6);
+            this.txtTen.MaxLength = 10;
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(100, 21);
             this.txtTen.TabIndex = 3;
@@ -592,6 +614,7 @@ namespace QLDSV_HTC
             // 
             this.txtPassword.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "PASSWORD", true));
             this.txtPassword.Location = new System.Drawing.Point(127, 37);
+            this.txtPassword.MaxLength = 40;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(128, 21);
             this.txtPassword.TabIndex = 5;
@@ -613,7 +636,9 @@ namespace QLDSV_HTC
             // txtMaLop
             // 
             this.txtMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "MALOP", true));
+            this.txtMaLop.Enabled = false;
             this.txtMaLop.Location = new System.Drawing.Point(348, 37);
+            this.txtMaLop.MaxLength = 10;
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(100, 21);
             this.txtMaLop.TabIndex = 6;
@@ -622,6 +647,7 @@ namespace QLDSV_HTC
             // 
             this.txtDiaChi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "DIACHI", true));
             this.txtDiaChi.Location = new System.Drawing.Point(127, 94);
+            this.txtDiaChi.MaxLength = 100;
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(461, 21);
             this.txtDiaChi.TabIndex = 9;
@@ -663,14 +689,15 @@ namespace QLDSV_HTC
             this.panelControl3.Size = new System.Drawing.Size(1067, 177);
             this.panelControl3.TabIndex = 24;
             // 
-            // pHAILabel
+            // ckeDaNghiHoc
             // 
-            pHAILabel.AutoSize = true;
-            pHAILabel.Location = new System.Drawing.Point(697, 12);
-            pHAILabel.Name = "pHAILabel";
-            pHAILabel.Size = new System.Drawing.Size(35, 13);
-            pHAILabel.TabIndex = 22;
-            pHAILabel.Text = "PHAI:";
+            this.ckeDaNghiHoc.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSinhVien, "DANGHIHOC", true));
+            this.ckeDaNghiHoc.Location = new System.Drawing.Point(738, 42);
+            this.ckeDaNghiHoc.MenuManager = this.barManager1;
+            this.ckeDaNghiHoc.Name = "ckeDaNghiHoc";
+            this.ckeDaNghiHoc.Properties.Caption = "";
+            this.ckeDaNghiHoc.Size = new System.Drawing.Size(75, 20);
+            this.ckeDaNghiHoc.TabIndex = 24;
             // 
             // ckePhai
             // 
@@ -681,25 +708,6 @@ namespace QLDSV_HTC
             this.ckePhai.Properties.Caption = "Nữ";
             this.ckePhai.Size = new System.Drawing.Size(75, 20);
             this.ckePhai.TabIndex = 23;
-            // 
-            // dANGHIHOCLabel
-            // 
-            dANGHIHOCLabel.AutoSize = true;
-            dANGHIHOCLabel.Location = new System.Drawing.Point(660, 45);
-            dANGHIHOCLabel.Name = "dANGHIHOCLabel";
-            dANGHIHOCLabel.Size = new System.Drawing.Size(72, 13);
-            dANGHIHOCLabel.TabIndex = 23;
-            dANGHIHOCLabel.Text = "DANGHIHOC:";
-            // 
-            // ckeDaNghiHoc
-            // 
-            this.ckeDaNghiHoc.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSinhVien, "DANGHIHOC", true));
-            this.ckeDaNghiHoc.Location = new System.Drawing.Point(738, 42);
-            this.ckeDaNghiHoc.MenuManager = this.barManager1;
-            this.ckeDaNghiHoc.Name = "ckeDaNghiHoc";
-            this.ckeDaNghiHoc.Properties.Caption = "";
-            this.ckeDaNghiHoc.Size = new System.Drawing.Size(75, 20);
-            this.ckeDaNghiHoc.TabIndex = 24;
             // 
             // frmSinhVien
             // 
@@ -718,6 +726,7 @@ namespace QLDSV_HTC
             this.Name = "frmSinhVien";
             this.Text = "frmSinhVien";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSinhVien_FormClosed);
             this.Load += new System.EventHandler(this.frmSinhVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -739,8 +748,8 @@ namespace QLDSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ckePhai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckeDaNghiHoc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckePhai.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

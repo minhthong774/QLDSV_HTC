@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,49 +11,68 @@ using System.Windows.Forms;
 
 namespace QLDSV_HTC
 {
-    public partial class frmLop : Form
+    public partial class frmLopTinChi : Form
     {
         int vitri = 0;
         string maKhoa = "";
-        public frmLop()
+        public frmLopTinChi()
         {
             InitializeComponent();
         }
 
-        private void lOPBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void lOPTINCHIBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.bdsLop.EndEdit();
+            this.bdsLopTinChi.EndEdit();
             this.tableAdapterManager.UpdateAll(this.DS);
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmLopTinChi_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
-            this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.LOPTableAdapter.Fill(this.DS.LOP);
-            this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+            this.LOPTINCHITableAdapter.Connection.ConnectionString = Program.connstr;
+            this.LOPTINCHITableAdapter.Fill(this.DS.LOPTINCHI);
+            this.DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.DANGKYTableAdapter.Fill(this.DS.DANGKY);
 
             cmbKhoa.DataSource = Program.bds_dspm;
             cmbKhoa.DisplayMember = "TENKHOA";
             cmbKhoa.ValueMember = "TENSERVER";
             cmbKhoa.SelectedIndex = Program.mChinhanh;
-            //if (bdsLop.Count > 0)
-            //    maKhoa = ((DataRowView)bdsLop[0])["MAKHOA"].ToString();
 
-            String strLenh = "EXEC SP_Lay_Ma_Khoa_Tu_Ten_Khoa N'" + cmbKhoa.Text + "'";
-            Program.myReader = Program.ExecSqlDataReader(strLenh);
-            if (Program.myReader == null)
+            try
             {
+                String strLenh = "EXEC SP_Lay_Ma_Khoa_Tu_Ten_Khoa N'" + cmbKhoa.Text + "'";
+                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                if (Program.myReader == null)
+                {
+                    Program.myReader.Close();
+                    return;
+                }
+                Program.myReader.Read();
+                maKhoa = Program.myReader.GetString(0);
                 Program.myReader.Close();
+
+                strLenh = "SELECT MAGV FROM GIANGVIEN";
+                DataTable dtGiangVien = Program.ExecSqlDataTable(strLenh);
+                if (dtGiangVien == null) return;
+                cmbMaGV.DataSource = dtGiangVien;
+                cmbMaGV.DisplayMember = "MAGV";
+                cmbMaGV.ValueMember = "MAGV";
+
+                strLenh = "SELECT MAMH FROM MONHOC";
+                DataTable dtMonHoc = Program.ExecSqlDataTable(strLenh);
+                if (dtMonHoc == null) return;
+                cmbMaMH.DataSource = dtMonHoc;
+                cmbMaMH.DisplayMember = "TENMH";
+                cmbMaMH.ValueMember = "MAMH";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi Kết Nối Cơ Sở Dữ Liệu!\n" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
-            Program.myReader.Read();
-            maKhoa = Program.myReader.GetString(0);
-            Program.myReader.Close();
-
 
             if (Program.mGroup == "PGV")
             {
@@ -62,75 +82,86 @@ namespace QLDSV_HTC
             }
             else
             {
-
                 cmbKhoa.Enabled = false;
             }
+
         }
 
-        private void tENLOPLabel_Click(object sender, EventArgs e)
+        private void nHOMSpinEdit_EditValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void gcLop_Click(object sender, EventArgs e)
+        private void nHOMLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelControl2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitri = bdsLopTinChi.Position;
             panelControl2.Enabled = true;
-            bdsLop.AddNew();
+            bdsLopTinChi.AddNew();
             txtMaKhoa.Text = maKhoa;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
-            gcLop.Enabled = false;
+            gcLopTinChi.Enabled = false;
+
+            speHocKy.Value = 1;
+            speNhom.Value = 1;
+            speMinSV.Value = 0;
+            ckeHuyLop.Checked = false;
+            cmbMaMH.SelectedIndex = 1;
+            if(cmbMaMH.Items.Count>0)cmbMaMH.SelectedIndex = 0;
+            cmbMaGV.SelectedIndex = 1;
+            if (cmbMaGV.Items.Count > 0) cmbMaGV.SelectedIndex = 0;
+
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitri = bdsLopTinChi.Position;
             panelControl2.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
-            gcLop.Enabled = false;
+            gcLopTinChi.Enabled = false;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (txtMaLop.Text.Trim() == "")
+            if (txtNienKhoa.Text.Trim() == "")
             {
-                MessageBox.Show("Ma Lop Khong Duoc Thieu!", "", MessageBoxButtons.OK);
-                txtMaLop.Focus();
-                return;
-            }
-            if (txtTenLop.Text.Trim() == "")
-            {
-                MessageBox.Show("Ten Lop Khong Duoc Thieu!", "", MessageBoxButtons.OK);
-                txtTenLop.Focus();
-                return;
-            }
-            if (txtKhoaHoc.Text.Trim() == "")
-            {
-                MessageBox.Show("Khoa Hoc Khong Duoc Thieu!", "", MessageBoxButtons.OK);
-                txtKhoaHoc.Focus();
+                MessageBox.Show("Nien Khoa Khong Duoc Thieu!", "", MessageBoxButtons.OK);
+                txtNienKhoa.Focus();
                 return;
             }
 
             try
             {
-                bdsLop.EndEdit();
-                bdsLop.ResetCurrentItem();
-                this.LOPTableAdapter.Update(this.DS.LOP);
+                bdsLopTinChi.EndEdit();
+                bdsLopTinChi.ResetCurrentItem();
+                this.LOPTINCHITableAdapter.Update(this.DS.LOPTINCHI);
+            }
+            catch(SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Lớp đã tồn tại!", "", MessageBoxButtons.OK);
+                    return;
+                }
             }
             catch (Exception ex)
             {
-                this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.LOPTINCHITableAdapter.Connection.ConnectionString = Program.connstr;
                 MessageBox.Show("Loi Ghi Giang Vien!\n" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
-            gcLop.Enabled = true;
+            gcLopTinChi.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
 
@@ -140,38 +171,33 @@ namespace QLDSV_HTC
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String maLop = "";
-            if (bdsSV.Count > 0)
-            {
-                MessageBox.Show("Không thể xóa lớp này vì lớp đã có sinh viên", "", MessageBoxButtons.OK);
-                return;
-            }
 
             if (MessageBox.Show("Bạn có thật sự muốn xóa lớp này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
-                    maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
-                    bdsLop.RemoveCurrent();
-                    this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.LOPTableAdapter.Update(this.DS.LOP);
+                    maLop = ((DataRowView)bdsLopTinChi[bdsLopTinChi.Position])["MALTC"].ToString();
+                    bdsLopTinChi.RemoveCurrent();
+                    this.LOPTINCHITableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.LOPTINCHITableAdapter.Update(this.DS.LOPTINCHI);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại\n" + ex.Message, "", MessageBoxButtons.OK);
-                    this.LOPTableAdapter.Fill(this.DS.LOP);
-                    bdsLop.Position = bdsLop.Find("MALOP", maLop);
+                    this.LOPTINCHITableAdapter.Fill(this.DS.LOPTINCHI);
+                    bdsLopTinChi.Position = bdsLopTinChi.Find("MALOP", maLop);
                     return;
                 }
             }
 
-            if (bdsLop.Count == 0) btnXoa.Enabled = false;
+            if (bdsLopTinChi.Count == 0) btnXoa.Enabled = false;
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsLop.CancelEdit();
-            if (btnThem.Enabled == false) bdsLop.Position = vitri;
-            gcLop.Enabled = true;
+            bdsLopTinChi.CancelEdit();
+            if (btnThem.Enabled == false) bdsLopTinChi.Position = vitri;
+            gcLopTinChi.Enabled = true;
             panelControl2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
@@ -187,7 +213,7 @@ namespace QLDSV_HTC
         {
             try
             {
-                this.LOPTableAdapter.Fill(this.DS.LOP);
+                this.LOPTINCHITableAdapter.Fill(this.DS.LOPTINCHI);
             }
             catch (Exception ex)
             {
@@ -208,7 +234,7 @@ namespace QLDSV_HTC
                 return;
             Program.servername = cmbKhoa.SelectedValue.ToString();
 
-            if(cmbKhoa.SelectedIndex != Program.mChinhanh)
+            if (cmbKhoa.SelectedIndex != Program.mChinhanh)
             {
                 Program.mlogin = Program.remotelogin;
                 Program.password = Program.remotepassword;
@@ -219,17 +245,15 @@ namespace QLDSV_HTC
                 Program.password = Program.passwordDN;
             }
 
-            if(Program.KetNoi() == 0)
+            if (Program.KetNoi() == 0)
             {
                 MessageBox.Show("Lỗi kết nối về Khoa mới", "", MessageBoxButtons.OK);
                 cmbKhoa.SelectedIndex = Program.mChinhanh;
             }
             else
             {
-                this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.LOPTableAdapter.Fill(this.DS.LOP);
-                this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+                this.LOPTINCHITableAdapter.Connection.ConnectionString = Program.connstr;
+                this.LOPTINCHITableAdapter.Fill(this.DS.LOPTINCHI);
 
                 String strLenh = "EXEC SP_Lay_Ma_Khoa_Tu_Ten_Khoa N'" + cmbKhoa.Text + "'";
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
@@ -242,8 +266,8 @@ namespace QLDSV_HTC
                 maKhoa = Program.myReader.GetString(0);
             }
         }
-        
-        private void frmLop_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void frmLopTinChi_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.cmbKhoa.DataSource = null;
         }
