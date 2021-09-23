@@ -37,7 +37,13 @@ namespace QLDSV_HTC
             MA.Text = "Mã = " + Program.username;
             HOTEN.Text = "Họ tên = " + Program.mHoten;
             NHOM.Text = "Nhóm = " + Program.mGroup;
+            MALOP.Text = "Mã Lớp = " + Program.mLop;
             if (Program.mGroup == "PGV" || Program.mGroup == "KHOA") pageDanhMuc.Visible = true;
+            if (Program.mGroup == "SV")
+            {
+                pageDK.Visible = true;
+                MALOP.Visible = true;
+            }
         }
 
         private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -76,10 +82,13 @@ namespace QLDSV_HTC
             Program.mGroup = "";
             Program.mHoten = "";
             pageDanhMuc.Visible = false;
+            pageDK.Visible = false;
 
             MA.Text = "";
             HOTEN.Text = "";
             NHOM.Text = "";
+            MALOP.Text = "";
+            MALOP.Visible = false;
 
             foreach (Form f in this.MdiChildren)
                 f.Close();

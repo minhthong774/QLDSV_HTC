@@ -37,6 +37,7 @@ namespace QLDSV_HTC
             this.label3 = new System.Windows.Forms.Label();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.chbSinhVien = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtLogin
@@ -119,11 +120,22 @@ namespace QLDSV_HTC
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
+            // chbSinhVien
+            // 
+            this.chbSinhVien.AutoSize = true;
+            this.chbSinhVien.Location = new System.Drawing.Point(216, 92);
+            this.chbSinhVien.Name = "chbSinhVien";
+            this.chbSinhVien.Size = new System.Drawing.Size(83, 21);
+            this.chbSinhVien.TabIndex = 7;
+            this.chbSinhVien.Text = "Sinh Viên";
+            this.chbSinhVien.UseVisualStyleBackColor = true;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 588);
+            this.Controls.Add(this.chbSinhVien);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnDangNhap);
             this.Controls.Add(this.label3);
@@ -152,5 +164,6 @@ namespace QLDSV_HTC
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnDangNhap;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.CheckBox chbSinhVien;
     }
 }

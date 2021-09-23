@@ -39,16 +39,20 @@ namespace QLDSV_HTC
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.pageDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.pageDK = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MA = new System.Windows.Forms.ToolStripStatusLabel();
             this.HOTEN = new System.Windows.Forms.ToolStripStatusLabel();
             this.NHOM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MALOP = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -67,15 +71,17 @@ namespace QLDSV_HTC
             this.barButtonItem1,
             this.barButtonItem2,
             this.barButtonItem3,
-            this.barButtonItem4});
+            this.barButtonItem4,
+            this.barButtonItem5});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 8;
+            this.ribbonControl1.MaxItemId = 9;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 440;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
-            this.pageDanhMuc});
+            this.pageDanhMuc,
+            this.pageDK});
             this.ribbonControl1.Size = new System.Drawing.Size(1011, 177);
             // 
             // btnDangNhap
@@ -147,6 +153,15 @@ namespace QLDSV_HTC
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "Đăng Kí";
+            this.barButtonItem5.Id = 8;
+            this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
+            this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -185,6 +200,21 @@ namespace QLDSV_HTC
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Giảng Viên";
             // 
+            // pageDK
+            // 
+            this.pageDK.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup4});
+            this.pageDK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPage2.ImageOptions.Image")));
+            this.pageDK.Name = "pageDK";
+            this.pageDK.Text = "Đăng Kí Lớp Tín Chỉ";
+            this.pageDK.Visible = false;
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem5);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "Đăng Kí";
+            // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
@@ -194,7 +224,8 @@ namespace QLDSV_HTC
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MA,
             this.HOTEN,
-            this.NHOM});
+            this.NHOM,
+            this.MALOP});
             this.statusStrip1.Location = new System.Drawing.Point(0, 449);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
@@ -205,8 +236,8 @@ namespace QLDSV_HTC
             // MA
             // 
             this.MA.Name = "MA";
-            this.MA.Size = new System.Drawing.Size(39, 17);
-            this.MA.Text = "MASV";
+            this.MA.Size = new System.Drawing.Size(26, 17);
+            this.MA.Text = "MA";
             // 
             // HOTEN
             // 
@@ -219,6 +250,13 @@ namespace QLDSV_HTC
             this.NHOM.Name = "NHOM";
             this.NHOM.Size = new System.Drawing.Size(45, 17);
             this.NHOM.Text = "NHOM";
+            // 
+            // MALOP
+            // 
+            this.MALOP.Name = "MALOP";
+            this.MALOP.Size = new System.Drawing.Size(48, 17);
+            this.MALOP.Text = "MALOP";
+            this.MALOP.Visible = false;
             // 
             // frmMain
             // 
@@ -264,6 +302,10 @@ namespace QLDSV_HTC
         public DevExpress.XtraBars.BarButtonItem btnDangNhap;
         public DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
         public DevExpress.XtraBars.BarButtonItem btnDangXuat;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        public System.Windows.Forms.ToolStripStatusLabel MALOP;
+        private DevExpress.XtraBars.Ribbon.RibbonPage pageDK;
     }
 }
 

@@ -41,6 +41,7 @@ namespace QLDSV_HTC
         public static String passwordDN = "";
         public static String mGroup = "";
         public static String mHoten = "";
+        public static String mLop = "";
 
         public static int mChinhanh = 0;
 
