@@ -117,6 +117,7 @@ namespace QLDSV_HTC
                 return ex.State;
             }
         }
+
         public static void SetEnableOfButton(Form frm, Boolean Active)
         {
 

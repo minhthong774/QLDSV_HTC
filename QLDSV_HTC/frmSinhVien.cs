@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -55,6 +56,8 @@ namespace QLDSV_HTC
                 cmbKhoa.Enabled = false;
             }
 
+            btnGhi.Enabled = false;
+
             if (bdsLop.Count == 0) btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
         }
 
@@ -87,12 +90,29 @@ namespace QLDSV_HTC
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (txtMaSV.Text.Trim() == "")
+            String maSV = txtMaSV.Text.Trim();
+            if (maSV == "")
             {
                 MessageBox.Show("Ma Sinh Vien Khong Duoc Thieu!", "", MessageBoxButtons.OK);
                 txtMaSV.Focus();
                 return;
             }
+
+            string maSV_Prev = ((DataRowView)bdsSinhVien[bdsSinhVien.Position])["MASV"].ToString();
+            if (maSV != maSV_Prev)
+            {
+                String strLenh = "EXEC Get_SV_By_MaSV @MASV = '" + maSV + "'";
+
+                SqlDataReader myReader = Program.ExecSqlDataReader(strLenh);
+                if (myReader.HasRows)
+                {
+                    MessageBox.Show("Mã SV Đã Tồn Tại", "", MessageBoxButtons.OK);
+                    myReader.Close();
+                    return;
+                }
+                myReader.Close();
+            }
+
             if (txtHo.Text.Trim() == "")
             {
                 MessageBox.Show("Ho Sinh Vien Khong Duoc Thieu!", "", MessageBoxButtons.OK);
@@ -117,6 +137,9 @@ namespace QLDSV_HTC
                 bdsSinhVien.EndEdit();
                 bdsSinhVien.ResetCurrentItem();
                 this.SINHVIENTableAdapter.Update(this.DS.SINHVIEN);
+
+                Program.ExecSqlNonQuery("update sinhvien set password = '' where masv = N'" + maSV + "'");
+
             }
             catch (Exception ex)
             {
@@ -124,6 +147,7 @@ namespace QLDSV_HTC
                 MessageBox.Show("Loi Ghi Sinh Vien!\n" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
+            MessageBox.Show("Them Thanh Cong!", "", MessageBoxButtons.OK);
             gcLop.Enabled = true;
             gcSinhVien.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = true;

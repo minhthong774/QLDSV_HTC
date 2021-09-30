@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -133,24 +135,83 @@ namespace QLDSV_HTC
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-
-            foreach(DataGridViewRow c in dgvDK.Rows)
+            if(!(MessageBox.Show("Thao Tác Này Sẽ Cập Nhật CSDL\nĐồng Ý Thực Hiện Lưu?", "Lưu Ý!", MessageBoxButtons.YesNoCancel)==DialogResult.Yes))
             {
-                if (!ltc_Da_DANG_KI.Contains((int)c.Cells[0].Value))
+                return;
+            }
+            DataTable dtDangKi = new DataTable();
+            DataTable dtHuy = new DataTable();
+            String maSV = Program.mloginDN;
+
+            dtDangKi.Clear();
+            dtDangKi.Columns.Add("MALTC");
+            dtDangKi.Columns.Add("MASV");
+
+            dtHuy.Clear();
+            dtHuy.Columns.Add("MALTC");
+            dtHuy.Columns.Add("MASV");
+
+            foreach (DataGridViewRow c in dgvDK.Rows)
+            {
+                int maLTC = (int)c.Cells[0].Value;
+                if (!ltc_Da_DANG_KI.Contains(maLTC))
                 {
-                    string command = "INSERT INTO DANGKY(MALTC, MASV) VALUES (" + c.Cells[0].Value + ", N'" + Program.mloginDN + "')";
-                    Program.ExecSqlNonQuery(command);
+                    DataRow dtr = dtDangKi.NewRow();
+                    dtr["MALTC"] = maLTC;
+                    dtr["MASV"] = maSV;
+                    dtDangKi.Rows.Add(dtr);
                 }
                 else
                 {
-                    ltc_Da_DANG_KI.Remove((int)c.Cells[0].Value);
+                    ltc_Da_DANG_KI.Remove(maLTC);
                 }
             }
             foreach(int maltc in ltc_Da_DANG_KI)
             {
-                string command = "DELETE FROM DANGKY WHERE MALTC = " + maltc + " and MASV = N'" + Program.mloginDN + "'";
-                Program.ExecSqlNonQuery(command);
+                DataRow dtr = dtHuy.NewRow();
+                dtr["MALTC"] = maltc;
+                dtr["MASV"] = maSV;
+                dtHuy.Rows.Add(dtr);
             }
+
+            String strLenh = "DANG_KI_LTC";
+            SqlCommand Sqlcmd = new SqlCommand(strLenh, Program.conn);
+            Sqlcmd.CommandType = CommandType.StoredProcedure;
+            Sqlcmd.CommandTimeout = 600;
+            Sqlcmd.Parameters.AddWithValue("@DS", dtDangKi);
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+
+                Sqlcmd.ExecuteNonQuery();
+                Program.conn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
+                return;
+            }
+
+            String strLenh1 = "HUY_DANG_KI_LTC";
+            SqlCommand Sqlcmd1 = new SqlCommand(strLenh1, Program.conn);
+            Sqlcmd1.CommandType = CommandType.StoredProcedure;
+            Sqlcmd1.CommandTimeout = 600;
+            Sqlcmd1.Parameters.AddWithValue("@DS", dtHuy);
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+
+                Sqlcmd1.ExecuteNonQuery();
+                Program.conn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
+                return;
+            }
+
             MessageBox.Show("DANG KY THANH CONG", "", MessageBoxButtons.OK);
             ltc_Da_DANG_KI.Clear();
             dgvLTC.Rows.Clear();

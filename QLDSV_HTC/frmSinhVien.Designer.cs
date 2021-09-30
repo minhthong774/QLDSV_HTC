@@ -330,16 +330,16 @@ namespace QLDSV_HTC
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1067, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(1193, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 588);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 611);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1067, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1193, 0);
             // 
             // barDockControlLeft
             // 
@@ -348,16 +348,16 @@ namespace QLDSV_HTC
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 564);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 587);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1067, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(1193, 24);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 564);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 587);
             // 
             // panelControl1
             // 
@@ -367,18 +367,18 @@ namespace QLDSV_HTC
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 24);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1067, 203);
+            this.panelControl1.Size = new System.Drawing.Size(1193, 221);
             this.panelControl1.TabIndex = 4;
             // 
             // gcLop
             // 
             this.gcLop.DataSource = this.bdsLop;
             this.gcLop.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gcLop.Location = new System.Drawing.Point(2, 49);
+            this.gcLop.Location = new System.Drawing.Point(2, 34);
             this.gcLop.MainView = this.gridView1;
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
-            this.gcLop.Size = new System.Drawing.Size(1063, 152);
+            this.gcLop.Size = new System.Drawing.Size(1189, 185);
             this.gcLop.TabIndex = 4;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -482,20 +482,20 @@ namespace QLDSV_HTC
             // 
             this.panelControl2.Controls.Add(this.gcSinhVien);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl2.Location = new System.Drawing.Point(0, 227);
+            this.panelControl2.Location = new System.Drawing.Point(0, 245);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1067, 184);
+            this.panelControl2.Size = new System.Drawing.Size(1193, 237);
             this.panelControl2.TabIndex = 5;
             // 
             // gcSinhVien
             // 
             this.gcSinhVien.DataSource = this.bdsSinhVien;
-            this.gcSinhVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcSinhVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcSinhVien.Location = new System.Drawing.Point(2, 2);
             this.gcSinhVien.MainView = this.gridView2;
             this.gcSinhVien.MenuManager = this.barManager1;
             this.gcSinhVien.Name = "gcSinhVien";
-            this.gcSinhVien.Size = new System.Drawing.Size(1063, 177);
+            this.gcSinhVien.Size = new System.Drawing.Size(1189, 233);
             this.gcSinhVien.TabIndex = 0;
             this.gcSinhVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -684,9 +684,9 @@ namespace QLDSV_HTC
             this.panelControl3.Controls.Add(pASSWORDLabel);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Enabled = false;
-            this.panelControl3.Location = new System.Drawing.Point(0, 411);
+            this.panelControl3.Location = new System.Drawing.Point(0, 482);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1067, 177);
+            this.panelControl3.Size = new System.Drawing.Size(1193, 129);
             this.panelControl3.TabIndex = 24;
             // 
             // ckeDaNghiHoc
@@ -713,7 +713,7 @@ namespace QLDSV_HTC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 588);
+            this.ClientSize = new System.Drawing.Size(1193, 611);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
