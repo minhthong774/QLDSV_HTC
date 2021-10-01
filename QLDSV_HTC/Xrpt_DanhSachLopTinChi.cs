@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace QLDSV_HTC
 {
-    public partial class XtraReport1 : DevExpress.XtraReports.UI.XtraReport
+    public partial class Xrpt_DanhSachLopTinChi : DevExpress.XtraReports.UI.XtraReport
     {
-        public XtraReport1(string nienKhoa, int hocKy)
+        public Xrpt_DanhSachLopTinChi(string nienKhoa, int hocKy)
         {
             InitializeComponent();
             this.sqlDataSource1.Connection.ConnectionString = Program.connstr;

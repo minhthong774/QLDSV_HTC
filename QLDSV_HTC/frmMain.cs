@@ -182,5 +182,29 @@ namespace QLDSV_HTC
                 f.Show();
             }
         }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frptDanhSachLopTinChi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frptDanhSachLopTinChi f = new frptDanhSachLopTinChi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_DanhSachSinhVienDangKiLopTinChi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_DanhSachSinhVienDangKiLopTinChi f = new frpt_DanhSachSinhVienDangKiLopTinChi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

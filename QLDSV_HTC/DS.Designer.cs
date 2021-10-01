@@ -42,17 +42,17 @@ namespace QLDSV_HTC {
         
         private TENVAMAMHDataTable tableTENVAMAMH;
         
-        private global::System.Data.DataRelation relationFK_LOPTINCHI_MONHOC;
-        
         private global::System.Data.DataRelation relationFK_LOPTINCHI_GIANGVIEN;
+        
+        private global::System.Data.DataRelation relationFK_LOPTINCHI_MONHOC;
         
         private global::System.Data.DataRelation relationFK_SINHVIEN_LOP;
         
         private global::System.Data.DataRelation relationFK_CT_DONGHOCPHI_HOCPHI;
         
-        private global::System.Data.DataRelation relationFK_CTLTC_SINHVIEN;
-        
         private global::System.Data.DataRelation relationFK_DANGKY_LOPTINCHI;
+        
+        private global::System.Data.DataRelation relationFK_CTLTC_SINHVIEN;
         
         private global::System.Data.DataRelation relationFK_HOCPHI_SINHVIEN;
         
@@ -400,12 +400,12 @@ namespace QLDSV_HTC {
                     this.tableTENVAMAMH.InitVars();
                 }
             }
-            this.relationFK_LOPTINCHI_MONHOC = this.Relations["FK_LOPTINCHI_MONHOC"];
             this.relationFK_LOPTINCHI_GIANGVIEN = this.Relations["FK_LOPTINCHI_GIANGVIEN"];
+            this.relationFK_LOPTINCHI_MONHOC = this.Relations["FK_LOPTINCHI_MONHOC"];
             this.relationFK_SINHVIEN_LOP = this.Relations["FK_SINHVIEN_LOP"];
             this.relationFK_CT_DONGHOCPHI_HOCPHI = this.Relations["FK_CT_DONGHOCPHI_HOCPHI"];
-            this.relationFK_CTLTC_SINHVIEN = this.Relations["FK_CTLTC_SINHVIEN"];
             this.relationFK_DANGKY_LOPTINCHI = this.Relations["FK_DANGKY_LOPTINCHI"];
+            this.relationFK_CTLTC_SINHVIEN = this.Relations["FK_CTLTC_SINHVIEN"];
             this.relationFK_HOCPHI_SINHVIEN = this.Relations["FK_HOCPHI_SINHVIEN"];
         }
         
@@ -436,16 +436,16 @@ namespace QLDSV_HTC {
             this.tableTENVAMAMH = new TENVAMAMHDataTable();
             base.Tables.Add(this.tableTENVAMAMH);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_LOPTINCHI_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableLOPTINCHI.MAMHColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_LOPTINCHI_GIANGVIEN", new global::System.Data.DataColumn[] {
+                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableLOPTINCHI.MAGVColumn});
             this.tableLOPTINCHI.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_LOPTINCHI_GIANGVIEN", new global::System.Data.DataColumn[] {
-                        this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableLOPTINCHI.MAGVColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_LOPTINCHI_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableLOPTINCHI.MAMHColumn});
             this.tableLOPTINCHI.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -468,16 +468,16 @@ namespace QLDSV_HTC {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_CTLTC_SINHVIEN", new global::System.Data.DataColumn[] {
-                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKY.MASVColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKY_LOPTINCHI", new global::System.Data.DataColumn[] {
+                        this.tableLOPTINCHI.MALTCColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKY.MALTCColumn});
             this.tableDANGKY.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_DANGKY_LOPTINCHI", new global::System.Data.DataColumn[] {
-                        this.tableLOPTINCHI.MALTCColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKY.MALTCColumn});
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_CTLTC_SINHVIEN", new global::System.Data.DataColumn[] {
+                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKY.MASVColumn});
             this.tableDANGKY.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -489,14 +489,14 @@ namespace QLDSV_HTC {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_LOPTINCHI_MONHOC = new global::System.Data.DataRelation("FK_LOPTINCHI_MONHOC", new global::System.Data.DataColumn[] {
-                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
-                        this.tableLOPTINCHI.MAMHColumn}, false);
-            this.Relations.Add(this.relationFK_LOPTINCHI_MONHOC);
             this.relationFK_LOPTINCHI_GIANGVIEN = new global::System.Data.DataRelation("FK_LOPTINCHI_GIANGVIEN", new global::System.Data.DataColumn[] {
                         this.tableGIANGVIEN.MAGVColumn}, new global::System.Data.DataColumn[] {
                         this.tableLOPTINCHI.MAGVColumn}, false);
             this.Relations.Add(this.relationFK_LOPTINCHI_GIANGVIEN);
+            this.relationFK_LOPTINCHI_MONHOC = new global::System.Data.DataRelation("FK_LOPTINCHI_MONHOC", new global::System.Data.DataColumn[] {
+                        this.tableMONHOC.MAMHColumn}, new global::System.Data.DataColumn[] {
+                        this.tableLOPTINCHI.MAMHColumn}, false);
+            this.Relations.Add(this.relationFK_LOPTINCHI_MONHOC);
             this.relationFK_SINHVIEN_LOP = new global::System.Data.DataRelation("FK_SINHVIEN_LOP", new global::System.Data.DataColumn[] {
                         this.tableLOP.MALOPColumn}, new global::System.Data.DataColumn[] {
                         this.tableSINHVIEN.MALOPColumn}, false);
@@ -509,14 +509,14 @@ namespace QLDSV_HTC {
                         this.tableCT_DONGHOCPHI.NIENKHOAColumn,
                         this.tableCT_DONGHOCPHI.HOCKYColumn}, false);
             this.Relations.Add(this.relationFK_CT_DONGHOCPHI_HOCPHI);
-            this.relationFK_CTLTC_SINHVIEN = new global::System.Data.DataRelation("FK_CTLTC_SINHVIEN", new global::System.Data.DataColumn[] {
-                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDANGKY.MASVColumn}, false);
-            this.Relations.Add(this.relationFK_CTLTC_SINHVIEN);
             this.relationFK_DANGKY_LOPTINCHI = new global::System.Data.DataRelation("FK_DANGKY_LOPTINCHI", new global::System.Data.DataColumn[] {
                         this.tableLOPTINCHI.MALTCColumn}, new global::System.Data.DataColumn[] {
                         this.tableDANGKY.MALTCColumn}, false);
             this.Relations.Add(this.relationFK_DANGKY_LOPTINCHI);
+            this.relationFK_CTLTC_SINHVIEN = new global::System.Data.DataRelation("FK_CTLTC_SINHVIEN", new global::System.Data.DataColumn[] {
+                        this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDANGKY.MASVColumn}, false);
+            this.Relations.Add(this.relationFK_CTLTC_SINHVIEN);
             this.relationFK_HOCPHI_SINHVIEN = new global::System.Data.DataRelation("FK_HOCPHI_SINHVIEN", new global::System.Data.DataColumn[] {
                         this.tableSINHVIEN.MASVColumn}, new global::System.Data.DataColumn[] {
                         this.tableHOCPHI.MASVColumn}, false);
@@ -3948,23 +3948,23 @@ namespace QLDSV_HTC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MONHOCRow MONHOCRow {
-                get {
-                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_LOPTINCHI_MONHOC"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_LOPTINCHI_MONHOC"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public GIANGVIENRow GIANGVIENRow {
                 get {
                     return ((GIANGVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_LOPTINCHI_GIANGVIEN"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_LOPTINCHI_GIANGVIEN"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public MONHOCRow MONHOCRow {
+                get {
+                    return ((MONHOCRow)(this.GetParentRow(this.Table.ParentRelations["FK_LOPTINCHI_MONHOC"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_LOPTINCHI_MONHOC"]);
                 }
             }
             
@@ -4431,23 +4431,23 @@ namespace QLDSV_HTC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SINHVIENRow SINHVIENRow {
-                get {
-                    return ((SINHVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_CTLTC_SINHVIEN"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CTLTC_SINHVIEN"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public LOPTINCHIRow LOPTINCHIRow {
                 get {
                     return ((LOPTINCHIRow)(this.GetParentRow(this.Table.ParentRelations["FK_DANGKY_LOPTINCHI"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_DANGKY_LOPTINCHI"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public SINHVIENRow SINHVIENRow {
+                get {
+                    return ((SINHVIENRow)(this.GetParentRow(this.Table.ParentRelations["FK_CTLTC_SINHVIEN"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_CTLTC_SINHVIEN"]);
                 }
             }
             

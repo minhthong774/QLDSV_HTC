@@ -26,7 +26,7 @@ namespace QLDSV_HTC
 
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
-        public static String connstr_publisher = "Data Source=DESKTOP-TSOPMRN;Initial Catalog=QLDSV_HTC;Integrated Security=True";
+        public static String connstr_publisher = "Data Source=DESKTOP-92OIQQR;Initial Catalog=QLDSV_HTC;Integrated Security=True";
 
         public static SqlDataReader myReader;
         public static String servername = "";

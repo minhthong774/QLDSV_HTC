@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.DataAccess.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v21.1.UI, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -138,11 +139,23 @@
     <Compile Include="frmSinhVien.Designer.cs">
       <DependentUpon>frmSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frptDanhSachLopTinChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frptDanhSachLopTinChi.Designer.cs">
+      <DependentUpon>frptDanhSachLopTinChi.cs</DependentUpon>
+    </Compile>
     <Compile Include="frpt_BangDiemSVTheoLTC.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frpt_BangDiemSVTheoLTC.Designer.cs">
       <DependentUpon>frpt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpt_DanhSachSinhVienDangKiLopTinChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpt_DanhSachSinhVienDangKiLopTinChi.Designer.cs">
+      <DependentUpon>frpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,6 +163,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLDSV_HTCDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Xprt_BangDiemSVTheoLTC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xprt_BangDiemSVTheoLTC.Designer.cs">
+      <DependentUpon>Xprt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_DanhSachLopTinChi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_DanhSachLopTinChi.Designer.cs">
+      <DependentUpon>Xrpt_DanhSachLopTinChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_DanhSachSinhVienDangKiLopTinChi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_DanhSachSinhVienDangKiLopTinChi.Designer.cs">
+      <DependentUpon>Xrpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmDangKi.resx">
       <DependentUpon>frmDangKi.cs</DependentUpon>
@@ -178,8 +215,14 @@
     <EmbeddedResource Include="frmSinhVien.resx">
       <DependentUpon>frmSinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frptDanhSachLopTinChi.resx">
+      <DependentUpon>frptDanhSachLopTinChi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frpt_BangDiemSVTheoLTC.resx">
       <DependentUpon>frpt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpt_DanhSachSinhVienDangKiLopTinChi.resx">
+      <DependentUpon>frpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -193,6 +236,15 @@
     </Compile>
     <EmbeddedResource Include="Xprt_BangDiemSVTheoLTC.resx">
       <DependentUpon>Xprt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_DanhSachLopTinChi.resx">
+      <DependentUpon>Xrpt_DanhSachLopTinChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_DanhSachSinhVienDangKiLopTinChi.resx">
+      <DependentUpon>Xrpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

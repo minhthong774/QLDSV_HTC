@@ -287,6 +287,7 @@ namespace QLDSV_HTC
             // 
             // cmbKhoa
             // 
+            this.cmbKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKhoa.FormattingEnabled = true;
             this.cmbKhoa.Location = new System.Drawing.Point(114, 5);
             this.cmbKhoa.Name = "cmbKhoa";
