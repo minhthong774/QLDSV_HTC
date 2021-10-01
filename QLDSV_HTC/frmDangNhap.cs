@@ -165,6 +165,9 @@ namespace QLDSV_HTC
             LayDSPM("SELECT * FROM Get_Subscribes");
             cmbChinhanh.SelectedIndex = 1;
             cmbChinhanh.SelectedIndex = 0;
+
+            txtLogin.Text = "ptl";
+            txtPass.Text = "123456";
         }
 
         private void cmbChinhanh_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,6 +184,14 @@ namespace QLDSV_HTC
         {
             Close();
             Program.frmChinh.Close();
+        }
+
+        private void frmDangNhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnDangNhap.PerformClick();
+            }
         }
     }
 }

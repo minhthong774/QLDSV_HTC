@@ -217,5 +217,10 @@ namespace QLDSV_HTC
             dgvLTC.Rows.Clear();
             dgvDK.Rows.Clear();
         }
+
+        private void frmDangKi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

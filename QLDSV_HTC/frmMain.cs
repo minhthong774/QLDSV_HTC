@@ -38,7 +38,12 @@ namespace QLDSV_HTC
             HOTEN.Text = "Họ tên = " + Program.mHoten;
             NHOM.Text = "Nhóm = " + Program.mGroup;
             MALOP.Text = "Mã Lớp = " + Program.mLop;
-            if (Program.mGroup == "PGV" || Program.mGroup == "KHOA") pageDanhMuc.Visible = true;
+            if (Program.mGroup == "PGV" || Program.mGroup == "KHOA")
+            {
+                pageDanhMuc.Visible = true;
+                pageNhapDiem.Visible = true;
+                pageBaoCao.Visible = true;
+            }
             if (Program.mGroup == "SV")
             {
                 pageDK.Visible = true;
@@ -128,6 +133,51 @@ namespace QLDSV_HTC
             else
             {
                 frmDangKi f = new frmDangKi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void PGV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmNhapDiem));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmNhapDiem f = new frmNhapDiem();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ribbonControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnDangNhap.PerformClick();
+            }
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnDangNhap.PerformClick();
+            }
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_BangDiemSVTheoLTC));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_BangDiemSVTheoLTC f = new frpt_BangDiemSVTheoLTC();
                 f.MdiParent = this;
                 f.Show();
             }

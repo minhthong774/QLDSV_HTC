@@ -4,5 +4,8 @@
 
     partial class DS
     {
+        partial class LOPTINCHIDataTable
+        {
+        }
     }
 }

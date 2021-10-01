@@ -149,6 +149,7 @@ namespace QLDSV_HTC
             this.Name = "frmDangNhap";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmDangNhap_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDangNhap_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
