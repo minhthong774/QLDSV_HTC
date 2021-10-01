@@ -574,6 +574,23 @@ SELECT MAMH, TENMH, SOTIET_LT, SOTIET_TH FROM MONHOC WHERE (MAMH = @MAMH)</Comma
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TENVAMAMHTableAdapter" GeneratorDataComponentClassName="TENVAMAMHTableAdapter" Name="TENVAMAMH" UserDataComponentName="TENVAMAMHTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="QLDSV_HTCConnectionString (Settings)" DbObjectName="QLDSV_HTC.dbo.MONHOC" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT MAMH, TENMH FROM MONHOC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MAMH" DataSetColumn="MAMH" />
+              <Mapping SourceColumn="TENMH" DataSetColumn="TENMH" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -846,6 +863,26 @@ SELECT MAMH, TENMH, SOTIET_LT, SOTIET_TH FROM MONHOC WHERE (MAMH = @MAMH)</Comma
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="TENVAMAMH" msprop:Generator_TableClassName="TENVAMAMHDataTable" msprop:Generator_TableVarName="tableTENVAMAMH" msprop:Generator_RowChangedName="TENVAMAMHRowChanged" msprop:Generator_TablePropName="TENVAMAMH" msprop:Generator_RowDeletingName="TENVAMAMHRowDeleting" msprop:Generator_RowChangingName="TENVAMAMHRowChanging" msprop:Generator_RowEvHandlerName="TENVAMAMHRowChangeEventHandler" msprop:Generator_RowDeletedName="TENVAMAMHRowDeleted" msprop:Generator_RowClassName="TENVAMAMHRow" msprop:Generator_UserTableName="TENVAMAMH" msprop:Generator_RowEvArgName="TENVAMAMHRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAMH" msprop:Generator_ColumnVarNameInTable="columnMAMH" msprop:Generator_ColumnPropNameInRow="MAMH" msprop:Generator_ColumnPropNameInTable="MAMHColumn" msprop:Generator_UserColumnName="MAMH">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TENMH" msprop:Generator_ColumnVarNameInTable="columnTENMH" msprop:Generator_ColumnPropNameInRow="TENMH" msprop:Generator_ColumnPropNameInTable="TENMHColumn" msprop:Generator_UserColumnName="TENMH">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -884,6 +921,10 @@ SELECT MAMH, TENMH, SOTIET_LT, SOTIET_TH FROM MONHOC WHERE (MAMH = @MAMH)</Comma
     </xs:unique>
     <xs:unique name="MONHOC_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:MONHOC" />
+      <xs:field xpath="mstns:MAMH" />
+    </xs:unique>
+    <xs:unique name="TENVAMAMH_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TENVAMAMH" />
       <xs:field xpath="mstns:MAMH" />
     </xs:unique>
     <xs:keyref name="FK_HOCPHI_SINHVIEN" refer="SINHVIEN_Constraint1" msprop:rel_Generator_UserChildTable="HOCPHI" msprop:rel_Generator_ChildPropName="GetHOCPHIRows" msprop:rel_Generator_UserRelationName="FK_HOCPHI_SINHVIEN" msprop:rel_Generator_RelationVarName="relationFK_HOCPHI_SINHVIEN" msprop:rel_Generator_UserParentTable="SINHVIEN" msprop:rel_Generator_ParentPropName="SINHVIENRow" msdata:DeleteRule="None">

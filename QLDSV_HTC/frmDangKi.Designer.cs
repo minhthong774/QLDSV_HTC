@@ -37,6 +37,13 @@ namespace QLDSV_HTC
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.dgvLTC = new System.Windows.Forms.DataGridView();
+            this.DANGKY = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.MALTC1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MAMH1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TENMH1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NHOM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HOTEN_GV1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SO_SV_DANG_KI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.dgvDK = new System.Windows.Forms.DataGridView();
@@ -46,13 +53,6 @@ namespace QLDSV_HTC
             this.NHOM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HOTEN_GV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Huy = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DANGKY = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.MALTC1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MAMH1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENMH1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NHOM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HOTEN_GV1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SO_SV_DANG_KI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudHocKi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -167,6 +167,56 @@ namespace QLDSV_HTC
             this.dgvLTC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLTC_CellContentClick);
             this.dgvLTC.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLTC_CellValueChanged);
             // 
+            // DANGKY
+            // 
+            this.DANGKY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.DANGKY.HeaderText = "DANGKY";
+            this.DANGKY.Name = "DANGKY";
+            this.DANGKY.Width = 53;
+            // 
+            // MALTC1
+            // 
+            this.MALTC1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MALTC1.HeaderText = "MALTC";
+            this.MALTC1.Name = "MALTC1";
+            this.MALTC1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MALTC1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.MALTC1.Visible = false;
+            // 
+            // MAMH1
+            // 
+            this.MAMH1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MAMH1.HeaderText = "MAMH";
+            this.MAMH1.Name = "MAMH1";
+            this.MAMH1.Width = 62;
+            // 
+            // TENMH1
+            // 
+            this.TENMH1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.TENMH1.HeaderText = "TENMH";
+            this.TENMH1.Name = "TENMH1";
+            this.TENMH1.Width = 66;
+            // 
+            // NHOM1
+            // 
+            this.NHOM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.NHOM1.HeaderText = "NHOM";
+            this.NHOM1.Name = "NHOM1";
+            this.NHOM1.Width = 62;
+            // 
+            // HOTEN_GV1
+            // 
+            this.HOTEN_GV1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.HOTEN_GV1.HeaderText = "HOTEN_GV";
+            this.HOTEN_GV1.Name = "HOTEN_GV1";
+            this.HOTEN_GV1.Width = 85;
+            // 
+            // SO_SV_DANG_KI
+            // 
+            this.SO_SV_DANG_KI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SO_SV_DANG_KI.HeaderText = "SO_SV_DANG_KI";
+            this.SO_SV_DANG_KI.Name = "SO_SV_DANG_KI";
+            // 
             // simpleButton2
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,57 +301,6 @@ namespace QLDSV_HTC
             this.Huy.UseColumnTextForButtonValue = true;
             this.Huy.Width = 32;
             // 
-            // DANGKY
-            // 
-            this.DANGKY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.DANGKY.HeaderText = "DANGKY";
-            this.DANGKY.Name = "DANGKY";
-            this.DANGKY.Width = 53;
-            // 
-            // MALTC1
-            // 
-            this.MALTC1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.MALTC1.HeaderText = "MALTC";
-            this.MALTC1.Name = "MALTC1";
-            this.MALTC1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MALTC1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.MALTC1.Visible = false;
-            this.MALTC1.Width = 46;
-            // 
-            // MAMH1
-            // 
-            this.MAMH1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.MAMH1.HeaderText = "MAMH";
-            this.MAMH1.Name = "MAMH1";
-            this.MAMH1.Width = 62;
-            // 
-            // TENMH1
-            // 
-            this.TENMH1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TENMH1.HeaderText = "TENMH";
-            this.TENMH1.Name = "TENMH1";
-            this.TENMH1.Width = 66;
-            // 
-            // NHOM1
-            // 
-            this.NHOM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.NHOM1.HeaderText = "NHOM";
-            this.NHOM1.Name = "NHOM1";
-            this.NHOM1.Width = 62;
-            // 
-            // HOTEN_GV1
-            // 
-            this.HOTEN_GV1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.HOTEN_GV1.HeaderText = "HOTEN_GV";
-            this.HOTEN_GV1.Name = "HOTEN_GV1";
-            this.HOTEN_GV1.Width = 85;
-            // 
-            // SO_SV_DANG_KI
-            // 
-            this.SO_SV_DANG_KI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SO_SV_DANG_KI.HeaderText = "SO_SV_DANG_KI";
-            this.SO_SV_DANG_KI.Name = "SO_SV_DANG_KI";
-            // 
             // frmDangKi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -314,6 +313,7 @@ namespace QLDSV_HTC
             this.Name = "frmDangKi";
             this.Text = "frmDangKi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmDangKi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudHocKi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
