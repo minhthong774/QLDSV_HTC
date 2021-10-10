@@ -29,6 +29,10 @@ namespace QLDSV_HTC
             cmbKhoa.ValueMember = "TENSERVER";
             cmbKhoa.SelectedIndex = Program.mChinhanh;
 
+            cmbNienKhoa.SelectedIndex = 0;
+            cmbHocKy.SelectedIndex = 0;
+            cmbNhom.SelectedIndex = 0;
+
             if (Program.mGroup == "PGV")
             {
                 cmbKhoa.Enabled = true;
@@ -48,12 +52,22 @@ namespace QLDSV_HTC
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string nienKhoa = cmbNienKhoa.Text;
+            string hocKy = cmbHocKy.Text;
+            string nhom = cmbNhom.Text;
+
             Console.WriteLine(cmbHocKy.Text.ToString());
             Console.WriteLine(cmbNienKhoa.Text.ToString());
             Console.WriteLine(maMonHoc);
             Console.WriteLine(cmbNhom.Text.ToString());
 
-            Xprt_BangDiemSVTheoLTC rpt = new Xprt_BangDiemSVTheoLTC(cmbNienKhoa.Text,  int.Parse(cmbHocKy.Text.ToString()),  maMonHoc,  int.Parse(cmbNhom.Text.ToString()));
+            if (nienKhoa == "" || hocKy == "" || nhom == "")
+            {
+                MessageBox.Show("Vui lòng chọn đầy đủ thông tin!");
+                return;
+            }
+
+            Xrpt_BangDiemSVTheoLTC rpt = new Xrpt_BangDiemSVTheoLTC(nienKhoa,  int.Parse(hocKy),  maMonHoc,  int.Parse(nhom));
             rpt.lblKhoa.Text = "KHOA: " + this.cmbKhoa.Text;
             rpt.lblNienKhoa.Text = "Niên khóa: " + cmbNienKhoa.Text + " Học kỳ: " + cmbHocKy.Text;
             rpt.lblMonHoc.Text = "Môn học: " + cmbMonHoc.Text + " - " + "Nhóm: " + cmbNhom.Text;

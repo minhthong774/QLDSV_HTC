@@ -60,12 +60,15 @@
     <Reference Include="DevExpress.XtraEditors.v21.1" />
     <Reference Include="DevExpress.XtraGauges.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v21.1.Extensions, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -90,6 +93,12 @@
     </Compile>
     <Compile Include="frmDangKi.Designer.cs">
       <DependentUpon>frmDangKi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDongHocPhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDongHocPhi.Designer.cs">
+      <DependentUpon>frmDongHocPhi.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLop.cs">
       <SubType>Form</SubType>
@@ -151,11 +160,29 @@
     <Compile Include="frpt_BangDiemSVTheoLTC.Designer.cs">
       <DependentUpon>frpt_BangDiemSVTheoLTC.cs</DependentUpon>
     </Compile>
+    <Compile Include="frpt_BangDiemTongKetCuoiKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpt_BangDiemTongKetCuoiKhoa.Designer.cs">
+      <DependentUpon>frpt_BangDiemTongKetCuoiKhoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="frpt_DanhSachSinhVienDangKiLopTinChi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frpt_DanhSachSinhVienDangKiLopTinChi.Designer.cs">
       <DependentUpon>frpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpt_DanhSachSVDongHP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpt_DanhSachSVDongHP.Designer.cs">
+      <DependentUpon>frpt_DanhSachSVDongHP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpt_PhieuDiemSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpt_PhieuDiemSV.Designer.cs">
+      <DependentUpon>frpt_PhieuDiemSV.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,11 +191,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLDSV_HTCDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Xprt_BangDiemSVTheoLTC.cs">
+    <Compile Include="Xrpt_BangDiemSVTheoLTC.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Xprt_BangDiemSVTheoLTC.Designer.cs">
-      <DependentUpon>Xprt_BangDiemSVTheoLTC.cs</DependentUpon>
+    <Compile Include="Xrpt_BangDiemSVTheoLTC.Designer.cs">
+      <DependentUpon>Xrpt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_BangDiemTongKetCuoiKhoa.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_BangDiemTongKetCuoiKhoa.Designer.cs">
+      <DependentUpon>Xrpt_BangDiemTongKetCuoiKhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Xrpt_DanhSachLopTinChi.cs">
       <SubType>Component</SubType>
@@ -182,6 +215,18 @@
     <Compile Include="Xrpt_DanhSachSinhVienDangKiLopTinChi.Designer.cs">
       <DependentUpon>Xrpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xrpt_DanhSachSVDongHP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_DanhSachSVDongHP.Designer.cs">
+      <DependentUpon>Xrpt_DanhSachSVDongHP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_PhieuDiemSV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_PhieuDiemSV.Designer.cs">
+      <DependentUpon>Xrpt_PhieuDiemSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="XtraReport1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -193,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDongHocPhi.resx">
+      <DependentUpon>frmDongHocPhi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGiangVien.resx">
       <DependentUpon>frmGiangVien.cs</DependentUpon>
@@ -221,8 +269,17 @@
     <EmbeddedResource Include="frpt_BangDiemSVTheoLTC.resx">
       <DependentUpon>frpt_BangDiemSVTheoLTC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frpt_BangDiemTongKetCuoiKhoa.resx">
+      <DependentUpon>frpt_BangDiemTongKetCuoiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frpt_DanhSachSinhVienDangKiLopTinChi.resx">
       <DependentUpon>frpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpt_DanhSachSVDongHP.resx">
+      <DependentUpon>frpt_DanhSachSVDongHP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpt_PhieuDiemSV.resx">
+      <DependentUpon>frpt_PhieuDiemSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -234,17 +291,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Xprt_BangDiemSVTheoLTC.resx">
-      <DependentUpon>Xprt_BangDiemSVTheoLTC.cs</DependentUpon>
+    <EmbeddedResource Include="Xrpt_BangDiemSVTheoLTC.resx">
+      <DependentUpon>Xrpt_BangDiemSVTheoLTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_BangDiemTongKetCuoiKhoa.resx">
+      <DependentUpon>Xrpt_BangDiemTongKetCuoiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_DanhSachSVDongHP.resx">
+      <DependentUpon>Xrpt_DanhSachSVDongHP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_PhieuDiemSV.resx">
+      <DependentUpon>Xrpt_PhieuDiemSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_DanhSachLopTinChi.resx">
       <DependentUpon>Xrpt_DanhSachLopTinChi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_DanhSachSinhVienDangKiLopTinChi.resx">
       <DependentUpon>Xrpt_DanhSachSinhVienDangKiLopTinChi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">

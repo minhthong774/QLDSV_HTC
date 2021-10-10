@@ -21,8 +21,11 @@ namespace QLDSV_HTC
            
         }
         int beforeEditDiemCC = 0;
+        string beforeEditNullDiemCC = "";
         float beforeEditDiemGK = 0;
+        string beforeEditNullDiemGK = "";
         float beforeEditDiemCK = 0;
+        string beforeEditNullDiemCK = "";
         int MALTC = 0;
 
         public class CustomDataGridViewCell
@@ -57,36 +60,58 @@ namespace QLDSV_HTC
 
         private void btnBatDau_Click(object sender, EventArgs e)
         {
-            string nienKhoa = cmbNienKhoa.Text;
-            decimal hocKy = nudHocKi.Value;
-            string monHoc = cmbMonHoc.SelectedValue.ToString();
-            decimal nhom = nudNhom.Value;
+            string nienKhoa = cmbNienKhoa.Text.ToString();
+            int hocKy = int.Parse(cmbHocKy.Text.ToString());
+            string monHoc = cmbMonHoc.SelectedValue.ToString().Trim();
+            int nhom = int.Parse(cmbNhom.Text.ToString());
+
+            if(nienKhoa == "")
+            {
+                MessageBox.Show("Vui lòng chọn đầy đủ thông tin");
+                return;
+            }
 
             dgvND.Rows.Clear();
 
             try
             {
                 DataTable dt = new DataTable();
-                string query = "EXEC GET_DS_SINHVIEN_LTC @NIENKHOA = N'" + nienKhoa + "', @HOCKY=" + hocKy + ", @MAMH = N'" + monHoc + "', @NHOM = " + nhom;
+                string query = "EXEC GET_DS_SINHVIEN_LTC @NIENKHOA = N'" + nienKhoa + "', @HOCKY = " + hocKy + ", @MAMH = N'" + monHoc + "', @NHOM = " + nhom;
+                Console.WriteLine(query);
+                
                 if (Program.conn != null && Program.conn.State == ConnectionState.Open) Program.conn.Close();
                 dt = Program.ExecSqlDataTable(query);
 
+                if(dt.Rows.Count  == 0)
+                {
+                    MessageBox.Show("Môn học này chưa có danh sách đăng ký!");
+                    btnGhiDiem.Enabled = false;
+                    btnUndo.Enabled = false;
+                    return;
+                }
+
                 foreach (DataRow dtr in dt.Rows)
                 {
-                    int diemCC = int.Parse(dtr[2].ToString());
-                    float diemGK = float.Parse(dtr[3].ToString());
-                    float diemCK = float.Parse(dtr[4].ToString());
-                    float diemHetMon = (float)Math.Round(diemCC*0.1 + diemGK*0.3 + diemCK*0.6, 2, MidpointRounding.ToEven);
+                    object objDiemHetMon = null;
+                    if (dtr[2].ToString() != "" && dtr[3].ToString() != "" && dtr[4].ToString() != "")
+                    {
+                        int diemCC = int.Parse(dtr[2].ToString());
+                        float diemGK = float.Parse(dtr[3].ToString());
+                        float diemCK = float.Parse(dtr[4].ToString());
+                        double diemHetMon = Math.Round(diemCC * 1/10f + diemGK * 3/10f + diemCK * 6/10f, 2, MidpointRounding.ToEven);
+                        objDiemHetMon = diemHetMon;
+                    }
 
-                    dgvND.Rows.Add(dtr[0], dtr[1], dtr[2], dtr[3], dtr[4], diemHetMon);
+                    dgvND.Rows.Add(dtr[0], dtr[1] , dtr[2], dtr[3], dtr[4], objDiemHetMon ?? null);
                 }
                 DataRow dr = dt.Rows[0];
                 MALTC = int.Parse(dr[5].ToString());
-
+                btnGhiDiem.Enabled = true;
+                btnUndo.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi Kết Nối CSDL!\n" + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Danh sách không có gì thay đổi" + ex.Message);
                 return;
             }
         }
@@ -95,6 +120,13 @@ namespace QLDSV_HTC
         {
             this.TENVAMAMHTableAdapter.Connection.ConnectionString = Program.connstr;
             this.TENVAMAMHTableAdapter.Fill(this.dS.TENVAMAMH);
+
+            cmbNienKhoa.SelectedIndex = 0;
+            cmbHocKy.SelectedIndex = 0;
+            cmbNhom.SelectedIndex = 0;
+
+            btnGhiDiem.Enabled = false;
+            btnUndo.Enabled = false;
             //if(Program.mGroup == "PGV")
             //{
             //    cmbKhoa.Visible = true;
@@ -126,7 +158,13 @@ namespace QLDSV_HTC
                 if (!Regex.IsMatch(edittingCell, @"^[0-9]$|^10$"))
                 {
                     MessageBox.Show("Vui lòng nhập trong khoảng 1 - 10");
-                    currentRow.Cells[2].Value = beforeEditDiemCC;
+                    if(beforeEditNullDiemCC == "null")
+                    {
+                        currentRow.Cells[2].Value = "";
+                    } else
+                    {
+                        currentRow.Cells[2].Value = beforeEditDiemCC;
+                    }
                     return;
                 }
             }
@@ -134,7 +172,15 @@ namespace QLDSV_HTC
                 if (!Regex.IsMatch(edittingCell, @"^[0-9]([.][0-9]{1,2})?$|^10$"))
                 {
                     MessageBox.Show("Vui lòng nhập trong khoảng 1 - 10");
-                    currentRow.Cells[3].Value = beforeEditDiemGK;
+                    if (beforeEditNullDiemGK == "null")
+                    {
+                        currentRow.Cells[3].Value = "";
+                    }
+                    else
+                    {
+                        currentRow.Cells[3].Value = beforeEditDiemGK;
+                    }
+                 
                     return;
                 }
             } else if(columnName == "colDiemCK")
@@ -142,11 +188,18 @@ namespace QLDSV_HTC
                 if (!Regex.IsMatch(edittingCell, @"^[0-9]([.][0-9]{1,2})?$|^10$"))
                 {
                     MessageBox.Show("Vui lòng nhập trong khoảng 1 - 10");
-                    currentRow.Cells[4].Value = beforeEditDiemCK;
+                    if (beforeEditNullDiemCK == "null")
+                    {
+                        currentRow.Cells[3].Value = "";
+                    }
+                    else
+                    {
+                        currentRow.Cells[4].Value = beforeEditDiemCK;
+                    }
                     return;
                 }
-           
             }
+
             Int32.TryParse(cDiemCC, out diemCC);
             float.TryParse(cDiemGK, out diemGK);
             float.TryParse(cDiemCK, out diemCK);
@@ -155,24 +208,39 @@ namespace QLDSV_HTC
             Console.WriteLine("diemGK:" + diemGK);
             Console.WriteLine("diemCK:" + diemCK);
              
+            if(cDiemCC != "" && cDiemGK != "" && cDiemCK != "") {
                 currentRow.Cells[5].Value = Math.Round(diemCC * 0.1 + diemGK * 0.3 + diemCK * 0.6, 2, MidpointRounding.ToEven);
-
+            }
         }
 
         private void dgvND_CellEnter(object sender, DataGridViewCellEventArgs e)
         {     
             var selectedCell = dgvND.CurrentCell;
             string columnName = dgvND.Columns[selectedCell.ColumnIndex].Name;
-            if (columnName == "colDiemCC")
+            if (columnName == "colDiemCC" && dgvND.Rows[selectedCell.RowIndex].Cells[2].Value.ToString() != "")
             {
-                beforeEditDiemCC = int.Parse(dgvND.Rows[selectedCell.RowIndex].Cells[2].Value.ToString());
-            } else if(columnName == "colDiemGK")
+                beforeEditDiemCC =  int.Parse(dgvND.Rows[selectedCell.RowIndex].Cells[2].Value.ToString());
+            } else
+            {
+                beforeEditNullDiemCC = "null";
+            } 
+
+            if(columnName == "colDiemGK" && dgvND.Rows[selectedCell.RowIndex].Cells[3].Value.ToString() != "")
             {
                 beforeEditDiemGK = float.Parse(dgvND.Rows[selectedCell.RowIndex].Cells[3].Value.ToString());
-            } else if(columnName == "colDiemCK")
+            } else
+            {
+                beforeEditNullDiemGK = "null";
+            }
+            
+            if(columnName == "colDiemCK" && dgvND.Rows[selectedCell.RowIndex].Cells[4].Value.ToString() != "")
             {
                 beforeEditDiemCK = float.Parse(dgvND.Rows[selectedCell.RowIndex].Cells[4].Value.ToString());
-            }         
+            }
+            else
+            {
+                beforeEditNullDiemCK = "null";
+            }        
         }
 
         private void btnGhiDiem_Click(object sender, EventArgs e)
@@ -186,6 +254,12 @@ namespace QLDSV_HTC
             dt.Columns.Add("DIEM_CC");
             dt.Columns.Add("DIEM_GK");
             dt.Columns.Add("DIEM_CK");
+
+            if(dgvND.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có sinh viên nào để ghi điểm");
+                return;
+            }
 
             foreach (DataGridViewRow dgvr in dgvND.Rows)
             {
@@ -218,7 +292,7 @@ namespace QLDSV_HTC
             DataGridViewCell oldValue = dgvND[e.ColumnIndex, e.RowIndex];
             var newValue = e.FormattedValue;
 
-            if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
+            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4) && oldValue.Value.ToString() != "" && newValue.ToString() != "")
             {
                 CustomDataGridViewCell cdgvc = new CustomDataGridViewCell(oldValue, float.Parse(oldValue.Value.ToString()), float.Parse(newValue.ToString()));
                 undoStack.Push(cdgvc);
@@ -231,7 +305,10 @@ namespace QLDSV_HTC
             {
                 CustomDataGridViewCell cdgvc = undoStack.Pop();
                 dgvND[cdgvc.dgvc.ColumnIndex, cdgvc.dgvc.RowIndex].Value = cdgvc.oldValue;
-                //dgvND.CurrentCell = dgvND[cdgvc.dgvc.ColumnIndex, cdgvc.dgvc.RowIndex];
+                dgvND.CurrentCell = dgvND[cdgvc.dgvc.ColumnIndex, cdgvc.dgvc.RowIndex];
+            } else
+            {
+                MessageBox.Show("Không có gì để phục hồi");
             }
         }
     }

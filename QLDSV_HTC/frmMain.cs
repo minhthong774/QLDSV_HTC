@@ -49,6 +49,10 @@ namespace QLDSV_HTC
                 pageDK.Visible = true;
                 MALOP.Visible = true;
             }
+            if(Program.mGroup == "PKT")
+            {
+                pageDongHocPhi.Visible = true;
+            }
         }
 
         private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -88,6 +92,7 @@ namespace QLDSV_HTC
             Program.mHoten = "";
             pageDanhMuc.Visible = false;
             pageDK.Visible = false;
+            pageDongHocPhi.Visible = false;
 
             MA.Text = "";
             HOTEN.Text = "";
@@ -196,6 +201,66 @@ namespace QLDSV_HTC
         }
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_DanhSachSinhVienDangKiLopTinChi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_DanhSachSinhVienDangKiLopTinChi f = new frpt_DanhSachSinhVienDangKiLopTinChi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDongHocPhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmDongHocPhi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmDongHocPhi f = new frmDongHocPhi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnPhieuDiemSinhVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_PhieuDiemSV));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_PhieuDiemSV f = new frpt_PhieuDiemSV();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnBangDiemTongKetCuoiKhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_BangDiemTongKetCuoiKhoa));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_BangDiemTongKetCuoiKhoa f = new frpt_BangDiemTongKetCuoiKhoa();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDanhSachDongHocPhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frpt_DanhSachSVDongHP));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frpt_DanhSachSVDongHP f = new frpt_DanhSachSVDongHP();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDSSVLTC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Form frm = this.CheckExists(typeof(frpt_DanhSachSinhVienDangKiLopTinChi));
             if (frm != null) frm.Activate();

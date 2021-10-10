@@ -140,7 +140,13 @@ namespace QLDSV_HTC
             "1",
             "2",
             "3",
-            "4"});
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
             this.cmbNhom.Location = new System.Drawing.Point(418, 110);
             this.cmbNhom.Name = "cmbNhom";
             this.cmbNhom.Size = new System.Drawing.Size(121, 21);
@@ -160,10 +166,11 @@ namespace QLDSV_HTC
             // 
             this.cmbNienKhoa.FormattingEnabled = true;
             this.cmbNienKhoa.Items.AddRange(new object[] {
-            "2018-2019",
-            "2019-2020",
+            "2021-2022",
             "2020-2021",
-            "2021-2022"});
+            "2019-2020",
+            "2018-2019",
+            ""});
             this.cmbNienKhoa.Location = new System.Drawing.Point(109, 106);
             this.cmbNienKhoa.Name = "cmbNienKhoa";
             this.cmbNienKhoa.Size = new System.Drawing.Size(121, 21);

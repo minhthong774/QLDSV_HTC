@@ -6,14 +6,14 @@ using System.Drawing;
 
 namespace QLDSV_HTC
 {
-    public partial class Xprt_BangDiemSVTheoLTC : DevExpress.XtraReports.UI.XtraReport
+    public partial class Xrpt_BangDiemSVTheoLTC : DevExpress.XtraReports.UI.XtraReport
     {
-        public Xprt_BangDiemSVTheoLTC()
+        public Xrpt_BangDiemSVTheoLTC()
         {
             InitializeComponent();
         }
 
-        public Xprt_BangDiemSVTheoLTC(string nienKhoa, int hocKy ,string maMonHoc, int nhom)
+        public Xrpt_BangDiemSVTheoLTC(string nienKhoa, int hocKy ,string maMonHoc, int nhom)
         {
             InitializeComponent();
             this.sqlDataSource1.Connection.ConnectionString = Program.connstr;

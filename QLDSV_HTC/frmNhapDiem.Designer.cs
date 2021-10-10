@@ -32,14 +32,16 @@ namespace QLDSV_HTC
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhapDiem));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbMonHoc = new System.Windows.Forms.ComboBox();
+            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
+            this.dS = new QLDSV_HTC.DS();
+            this.cmbNienKhoa = new System.Windows.Forms.ComboBox();
             this.btnUndo = new DevExpress.XtraEditors.SimpleButton();
             this.btnGhiDiem = new DevExpress.XtraEditors.SimpleButton();
-            this.nudNhom = new System.Windows.Forms.NumericUpDown();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnBatDau = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.nudHocKi = new System.Windows.Forms.NumericUpDown();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.dgvND = new System.Windows.Forms.DataGridView();
@@ -49,41 +51,73 @@ namespace QLDSV_HTC
             this.colDiemGK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDiemCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbMonHoc = new System.Windows.Forms.ComboBox();
-            this.cmbNienKhoa = new System.Windows.Forms.ComboBox();
-            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
-            this.dS = new QLDSV_HTC.DS();
             this.TENVAMAMHTableAdapter = new QLDSV_HTC.DSTableAdapters.TENVAMAMHTableAdapter();
             this.tableAdapterManager = new QLDSV_HTC.DSTableAdapters.TableAdapterManager();
+            this.cmbNhom = new System.Windows.Forms.ComboBox();
+            this.cmbHocKy = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNhom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHocKi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvND)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.cmbNhom);
+            this.panelControl1.Controls.Add(this.cmbHocKy);
             this.panelControl1.Controls.Add(this.cmbMonHoc);
             this.panelControl1.Controls.Add(this.cmbNienKhoa);
             this.panelControl1.Controls.Add(this.btnUndo);
             this.panelControl1.Controls.Add(this.btnGhiDiem);
-            this.panelControl1.Controls.Add(this.nudNhom);
             this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.btnBatDau);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.nudHocKi);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1157, 142);
             this.panelControl1.TabIndex = 0;
+            // 
+            // cmbMonHoc
+            // 
+            this.cmbMonHoc.DataSource = this.bdsMonHoc;
+            this.cmbMonHoc.DisplayMember = "TENMH";
+            this.cmbMonHoc.FormattingEnabled = true;
+            this.cmbMonHoc.Location = new System.Drawing.Point(96, 69);
+            this.cmbMonHoc.Name = "cmbMonHoc";
+            this.cmbMonHoc.Size = new System.Drawing.Size(159, 21);
+            this.cmbMonHoc.TabIndex = 21;
+            this.cmbMonHoc.ValueMember = "MAMH";
+            // 
+            // bdsMonHoc
+            // 
+            this.bdsMonHoc.DataMember = "TENVAMAMH";
+            this.bdsMonHoc.DataSource = this.dS;
+            // 
+            // dS
+            // 
+            this.dS.DataSetName = "DS";
+            this.dS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cmbNienKhoa
+            // 
+            this.cmbNienKhoa.FormattingEnabled = true;
+            this.cmbNienKhoa.Items.AddRange(new object[] {
+            "2021-2022",
+            "2020-2021",
+            "2019-2020",
+            "2018-2019",
+            "",
+            ""});
+            this.cmbNienKhoa.Location = new System.Drawing.Point(96, 18);
+            this.cmbNienKhoa.Name = "cmbNienKhoa";
+            this.cmbNienKhoa.Size = new System.Drawing.Size(159, 21);
+            this.cmbNienKhoa.TabIndex = 18;
             // 
             // btnUndo
             // 
@@ -108,30 +142,6 @@ namespace QLDSV_HTC
             this.btnGhiDiem.TabIndex = 16;
             this.btnGhiDiem.Text = "Ghi điểm";
             this.btnGhiDiem.Click += new System.EventHandler(this.btnGhiDiem_Click);
-            // 
-            // nudNhom
-            // 
-            this.nudNhom.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNhom.Location = new System.Drawing.Point(418, 65);
-            this.nudNhom.Margin = new System.Windows.Forms.Padding(4);
-            this.nudNhom.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nudNhom.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNhom.Name = "nudNhom";
-            this.nudNhom.Size = new System.Drawing.Size(160, 25);
-            this.nudNhom.TabIndex = 15;
-            this.nudNhom.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelControl4
             // 
@@ -177,30 +187,6 @@ namespace QLDSV_HTC
             this.labelControl1.Size = new System.Drawing.Size(67, 17);
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Niên Khóa:";
-            // 
-            // nudHocKi
-            // 
-            this.nudHocKi.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudHocKi.Location = new System.Drawing.Point(420, 14);
-            this.nudHocKi.Margin = new System.Windows.Forms.Padding(4);
-            this.nudHocKi.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nudHocKi.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudHocKi.Name = "nudHocKi";
-            this.nudHocKi.Size = new System.Drawing.Size(160, 25);
-            this.nudHocKi.TabIndex = 10;
-            this.nudHocKi.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelControl2
             // 
@@ -276,40 +262,6 @@ namespace QLDSV_HTC
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // cmbMonHoc
-            // 
-            this.cmbMonHoc.DataSource = this.bdsMonHoc;
-            this.cmbMonHoc.DisplayMember = "TENMH";
-            this.cmbMonHoc.FormattingEnabled = true;
-            this.cmbMonHoc.Location = new System.Drawing.Point(96, 69);
-            this.cmbMonHoc.Name = "cmbMonHoc";
-            this.cmbMonHoc.Size = new System.Drawing.Size(159, 21);
-            this.cmbMonHoc.TabIndex = 21;
-            this.cmbMonHoc.ValueMember = "MAMH";
-            // 
-            // cmbNienKhoa
-            // 
-            this.cmbNienKhoa.FormattingEnabled = true;
-            this.cmbNienKhoa.Items.AddRange(new object[] {
-            "2018-2019",
-            "2019-2020",
-            "2020-2021",
-            "2021-2022"});
-            this.cmbNienKhoa.Location = new System.Drawing.Point(96, 18);
-            this.cmbNienKhoa.Name = "cmbNienKhoa";
-            this.cmbNienKhoa.Size = new System.Drawing.Size(159, 21);
-            this.cmbNienKhoa.TabIndex = 18;
-            // 
-            // bdsMonHoc
-            // 
-            this.bdsMonHoc.DataMember = "TENVAMAMH";
-            this.bdsMonHoc.DataSource = this.dS;
-            // 
-            // dS
-            // 
-            this.dS.DataSetName = "DS";
-            this.dS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // TENVAMAMHTableAdapter
             // 
             this.TENVAMAMHTableAdapter.ClearBeforeFill = true;
@@ -328,6 +280,38 @@ namespace QLDSV_HTC
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QLDSV_HTC.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // cmbNhom
+            // 
+            this.cmbNhom.FormattingEnabled = true;
+            this.cmbNhom.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cmbNhom.Location = new System.Drawing.Point(401, 67);
+            this.cmbNhom.Name = "cmbNhom";
+            this.cmbNhom.Size = new System.Drawing.Size(121, 21);
+            this.cmbNhom.TabIndex = 23;
+            // 
+            // cmbHocKy
+            // 
+            this.cmbHocKy.FormattingEnabled = true;
+            this.cmbHocKy.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cmbHocKy.Location = new System.Drawing.Point(401, 18);
+            this.cmbHocKy.Name = "cmbHocKy";
+            this.cmbHocKy.Size = new System.Drawing.Size(121, 21);
+            this.cmbHocKy.TabIndex = 22;
+            // 
             // frmNhapDiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,13 +325,11 @@ namespace QLDSV_HTC
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNhom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHocKi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvND)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -357,13 +339,11 @@ namespace QLDSV_HTC
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton btnBatDau;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.NumericUpDown nudHocKi;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.DataGridView dgvND;
-        private System.Windows.Forms.NumericUpDown nudNhom;
         private DevExpress.XtraEditors.SimpleButton btnGhiDiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn test;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -378,5 +358,7 @@ namespace QLDSV_HTC
         private DS dS;
         private DSTableAdapters.TENVAMAMHTableAdapter TENVAMAMHTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.ComboBox cmbNhom;
+        private System.Windows.Forms.ComboBox cmbHocKy;
     }
 }
