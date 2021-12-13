@@ -69,6 +69,16 @@ namespace QLDSV_HTC
             if (cb.Value.ToString() == "True")
             {
                 DataGridViewRow row = dgvLTC.Rows[e.RowIndex];
+                foreach (DataGridViewRow c in dgvLTC.Rows)
+                {
+                    if (c.Cells[2].Value.ToString() == dgvLTC.Rows[e.RowIndex].Cells[2].Value.ToString() &&
+                        c.Cells[4].Value.ToString() != dgvLTC.Rows[e.RowIndex].Cells[4].Value.ToString() && c.Cells[0].Value.ToString() =="True")
+                    {
+                        MessageBox.Show("Môn học đã chọn, vui lòng chọn môn học khác", "", MessageBoxButtons.OK);
+                        cb.Value = false;
+                        return;
+                    }
+                }
                 dgvDK.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value);
             }
             else

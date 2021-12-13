@@ -271,5 +271,17 @@ namespace QLDSV_HTC
                 f.Show();
             }
         }
+
+        private void btnTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmTaiKhoan));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmTaiKhoan f = new frmTaiKhoan();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }
