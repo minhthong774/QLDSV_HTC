@@ -281,7 +281,7 @@ namespace QLDSV_HTC
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 482);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 648);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1167, 0);
             // 
@@ -291,7 +291,7 @@ namespace QLDSV_HTC
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 458);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 624);
             // 
             // barDockControlRight
             // 
@@ -299,7 +299,7 @@ namespace QLDSV_HTC
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1167, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 458);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 624);
             // 
             // panelControl1
             // 
@@ -403,9 +403,13 @@ namespace QLDSV_HTC
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CT_DONGHOCPHITableAdapter = null;
+            this.tableAdapterManager.DANGKYTableAdapter = null;
             this.tableAdapterManager.GIANGVIENTableAdapter = this.GIANGVIENTableAdapter;
+            this.tableAdapterManager.HOCPHITableAdapter = null;
             this.tableAdapterManager.LOPTableAdapter = null;
             this.tableAdapterManager.LOPTINCHITableAdapter = null;
+            this.tableAdapterManager.MONHOCTableAdapter = null;
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = QLDSV_HTC.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -429,7 +433,7 @@ namespace QLDSV_HTC
             this.panelControl2.Enabled = false;
             this.panelControl2.Location = new System.Drawing.Point(0, 212);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1167, 270);
+            this.panelControl2.Size = new System.Drawing.Size(1167, 436);
             this.panelControl2.TabIndex = 5;
             // 
             // cmbChuyenMon
@@ -494,8 +498,8 @@ namespace QLDSV_HTC
             // 
             // bdsLTC
             // 
-            this.bdsLTC.DataMember = "LOPTINCHI";
-            this.bdsLTC.DataSource = this.DS;
+            this.bdsLTC.DataMember = "FK_LOPTINCHI_GIANGVIEN";
+            this.bdsLTC.DataSource = this.bdsGV;
             // 
             // LOPTINCHITableAdapter
             // 
@@ -505,7 +509,7 @@ namespace QLDSV_HTC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1167, 482);
+            this.ClientSize = new System.Drawing.Size(1167, 648);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);

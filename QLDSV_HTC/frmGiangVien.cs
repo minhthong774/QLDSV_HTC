@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace QLDSV_HTC
 
         private void frmGiangVien_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'DS.LOPTINCHI' table. You can move, or remove it, as needed.
             DS.EnforceConstraints = false;
             this.GIANGVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.GIANGVIENTableAdapter.Fill(this.DS.GIANGVIEN);
@@ -37,7 +39,7 @@ namespace QLDSV_HTC
 
             //TODO: check datarow exist
             if (DS!=null && bdsGV!=null && bdsGV.Count > 0)
-            macn = ((DataRowView)bdsGV[0])["MACN"].ToString();
+            macn = ((DataRowView)bdsGV[0])["MAKHOA"].ToString();
             //cmbChiNhanh.DataSource = Program.bds_dspm;
             //cmbChiNhanh.DisplayMember = "TENCN"; 
             //cmbChiNhanh.ValueMember = "TENSERVER"; 
@@ -46,6 +48,14 @@ namespace QLDSV_HTC
             //else cmbChiNhanh.Enabled = false;
 
             //TODO: update status of button by user role ex:: btnThem.enable=true
+
+            if (Program.mGroup == "KHOA")
+            {
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = btnThoat.Enabled = false;
+
+            }
+
+            btnGhi.Enabled = btnUndo.Enabled = false;
 
         }
 
@@ -149,6 +159,32 @@ namespace QLDSV_HTC
             }
 
             //TODO: kiem tra thoa mien gia tri, check ma giao vien khong duoc trung tren cac phan manh, check cmb, dateEdit
+
+            String strLenh1 = "SP_CHECK_MAGV";
+            SqlCommand Sqlcmd1 = new SqlCommand(strLenh1, Program.conn);
+            Sqlcmd1.CommandType = CommandType.StoredProcedure;
+            Sqlcmd1.CommandTimeout = 600;
+            Sqlcmd1.Parameters.AddWithValue("@MAGV", txtMaGV.Text);
+            var returnParameter = Sqlcmd1.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+                Sqlcmd1.ExecuteNonQuery();
+                Program.conn.Close();
+                int result = (int)returnParameter.Value;
+                if (result == 1)
+                {
+                    MessageBox.Show("MA GIANG VIEN DA TON TAI", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
+                return;
+            }
 
             try
             {

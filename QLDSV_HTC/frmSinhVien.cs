@@ -132,6 +132,32 @@ namespace QLDSV_HTC
                 return;
             }
 
+            String strLenh1 = "SP_CHECK_MASV";
+            SqlCommand Sqlcmd1 = new SqlCommand(strLenh1, Program.conn);
+            Sqlcmd1.CommandType = CommandType.StoredProcedure;
+            Sqlcmd1.CommandTimeout = 600;
+            Sqlcmd1.Parameters.AddWithValue("@MASV", txtMaSV.Text);
+            var returnParameter = Sqlcmd1.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+                Sqlcmd1.ExecuteNonQuery();
+                Program.conn.Close();
+                int result = (int)returnParameter.Value;
+                if (result == 1)
+                {
+                    MessageBox.Show("MA SINH VIEN DA TON TAI", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
+                return;
+            }
+
             try
             {
                 bdsSinhVien.EndEdit();

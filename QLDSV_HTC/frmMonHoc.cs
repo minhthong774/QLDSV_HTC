@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,6 +97,32 @@ namespace QLDSV_HTC
             {
                 MessageBox.Show("Vui lòng nhập số tiết lí thuyết và thực hành có tổng chia hết cho 15", "", MessageBoxButtons.OK);
                 speSoTietLT.Focus();
+                return;
+            }
+
+            String strLenh1 = "SP_CHECK_MAMH";
+            SqlCommand Sqlcmd1 = new SqlCommand(strLenh1, Program.conn);
+            Sqlcmd1.CommandType = CommandType.StoredProcedure;
+            Sqlcmd1.CommandTimeout = 600;
+            Sqlcmd1.Parameters.AddWithValue("@MAMH", txtMaMH.Text);
+            var returnParameter = Sqlcmd1.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+                Sqlcmd1.ExecuteNonQuery();
+                Program.conn.Close();
+                int result = (int)returnParameter.Value;
+                if (result == 1)
+                {
+                    MessageBox.Show("MA MON HOC DA TON TAI", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
                 return;
             }
 

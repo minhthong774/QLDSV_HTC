@@ -141,6 +141,38 @@ namespace QLDSV_HTC
                 return;
             }
 
+            String strLenh1 = "SP_CHECKLOPTINCHI";
+            SqlCommand Sqlcmd1 = new SqlCommand(strLenh1, Program.conn);
+            Sqlcmd1.CommandType = CommandType.StoredProcedure;
+            Sqlcmd1.CommandTimeout = 600;
+            Sqlcmd1.Parameters.AddWithValue("@NIENKHOA", txtNienKhoa.Text);
+            Sqlcmd1.Parameters.AddWithValue("@HOCKY", speHocKy.Value);
+            Sqlcmd1.Parameters.AddWithValue("@MAMH", cmbMaMH.Text);
+            Sqlcmd1.Parameters.AddWithValue("@NHOM", speNhom.Value);
+            var returnParameter = Sqlcmd1.Parameters.Add("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            try
+            {
+                Sqlcmd1.ExecuteNonQuery();
+                Program.conn.Close();
+                int result = (int)returnParameter.Value;
+                if (result == 1)
+                {
+                    MessageBox.Show("LOP TIN CHI DA TON TAI", "", MessageBoxButtons.OK);
+                    return;
+                }else if(result == 2) {
+                    MessageBox.Show("LOP TIN CHI DA TON TAI TREN SERVER KHAC", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Program.conn.Close();
+                return;
+            }
+
             try
             {
                 bdsLopTinChi.EndEdit();
